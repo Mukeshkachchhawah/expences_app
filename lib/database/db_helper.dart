@@ -1,3 +1,4 @@
+import 'package:expense_app/modal/expense_modal.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -80,10 +81,25 @@ class AppDatabase {
         where: "$USER_COLUMN_EMAIL = ?", whereArgs: [email]);
     return check > 0;
   }
+
+  Future<bool> addNewNote(ExpenseModal newExpense) async {
+    var db = await openDB();
+    var check = await db.insert(EXPENSE_TABLE, newExpense.toMap());
+
+    return check > 0;
+  }
+
+  getAllExpense() async {
+    var db = await openDB();
+    List<Map<String, dynamic>> expense = await db.query(EXPENSE_TABLE);
+
+    List<ExpenseModal> arrExpense = [];
+
+    for (Map<String, dynamic> eachExpense in expense) {
+      var eacModal = ExpenseModal.toform(eachExpense);
+      arrExpense.add(eacModal);
+    }
+  }
 }
 
-//// Expence Funtion 
-
-addNewNote(){
-  
-}
+//// Expence Funtion

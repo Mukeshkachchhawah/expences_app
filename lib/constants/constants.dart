@@ -7,29 +7,63 @@ class Constants {
       'date': 'today',
       'amount': "120",
       'dayTransaction': [
-        {'title': 'Dog', 'subtitle': 'treat', 'amount': '50'},
-        {'title': 'Dog', 'subtitle': 'treat', 'amount': '50'},
-        {'title': 'Dog', 'subtitle': 'treat', 'amount': '50'}
+        {
+          'imge': 'https://cdn-icons-png.flaticon.com/512/616/616408.png',
+          'subtitle': 'treat',
+          'amount': '50',
+          'name': "text",
+          'trilExpence': '2.55\$'
+        },
+        {
+          'imge': 'https://cdn-icons-png.flaticon.com/512/616/616408.png',
+          'subtitle': 'treat',
+          'amount': '50',
+          'name': "text",
+          'trilExpence': '2.55\$'
+        },
       ]
     },
     {
       'date': 'yesterday',
-      'amount': "500",
+      'amount': "120",
       'dayTransaction': [
-        {'title': 'rravel', 'subtitle': 'treat', 'amount': '50'},
-        {'title': 'shoping', 'subtitle': 'treat', 'amount': '360'},
-        {'title': 'movie', 'subtitle': 'treat', 'amount': '90'}
+        {
+          'imge': 'https://cdn-icons-png.flaticon.com/512/616/616408.png',
+          'subtitle': 'treat',
+          'amount': '50',
+          'name': "text",
+          'trilExpence': '2.55\$'
+        },
+        {
+          'imge': 'https://cdn-icons-png.flaticon.com/512/616/616408.png',
+          'subtitle': 'treat',
+          'amount': '50',
+          'name': "text",
+          'trilExpence': '2.55\$'
+        },
       ]
     },
     {
-      'date': '19-08-2023',
-      'amount': "500",
+      'date': '16-03-2023',
+      'amount': "120",
       'dayTransaction': [
-        {'title': 'rravel', 'subtitle': 'treat', 'amount': '50'},
-        {'title': 'shoping', 'subtitle': 'treat', 'amount': '360'},
-        {'title': 'movie', 'subtitle': 'treat', 'amount': '90'}
+        {
+          'imge': 'https://cdn-icons-png.flaticon.com/512/616/616408.png',
+          'subtitle': 'treat',
+          'amount': '50',
+          'name': "text",
+          'trilExpence': '2.55\$'
+        },
+        {
+          'imge': 'https://cdn-icons-png.flaticon.com/512/616/616408.png',
+          'subtitle': 'treat',
+          'amount': '50',
+          'name': "text",
+          'trilExpence': '2.55\$'
+        },
       ]
     },
+
   ];
 }
 
@@ -37,11 +71,15 @@ class AppConstants {
   static final app_name = "Expenser";
 
   static const List<Map<String, dynamic>> catagery = [
-    // imgPath = "assets/icon/";
     {"id": "1", "name": "car", "image": ImageConstants.carimg},
-    {"id": "1", "name": "car", "image": "{assets/expense_icon/car.png"},
-    {"id": "1", "name": "car", "image": "{assets/expense_icon/car.png"},
-    {"id": "1", "name": "car", "image": "{assets/expense_icon/car.png"},
-    {"id": "1", "name": "car", "image": "{assets/expense_icon/car.png"}
+    {"id": "2", "name": "car", "image": ImageConstants.cokaimg},
+    {"id": "3", "name": "car", "image": ImageConstants.flaytimg},
+    {"id": "4", "name": "car", "image": ImageConstants.frenchimg},
+    {"id": "5", "name": "car", "image": ImageConstants.helicopatr},
+    {"id": "6", "name": "car", "image": ImageConstants.movieimg},
+    {"id": "7", "name": "car", "image": ImageConstants.popcornimg},
+    {"id": "8", "name": "car", "image": ImageConstants.shoppingimg},
+    {"id": "9", "name": "car", "image": ImageConstants.train},
+    {"id": "10", "name": "car", "image": ImageConstants.travelingimg}
   ];
 }

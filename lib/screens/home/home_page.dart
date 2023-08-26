@@ -77,18 +77,21 @@ class _Home_PageState extends State<Home_Page> {
                     itemBuilder: (_, index) {
                       return Column(
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(dummyData[index]['date']),
-                              Text("\$${dummyData[index]['amount']}"),
-                            ],
+                          Padding(
+                            padding: const EdgeInsets.only(left: 68,right: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(dummyData[index]['date'], style: textStyles18(),),
+                                Text("\$${dummyData[index]['amount']}"),
+                              ],
+                            ),
                           ),
                           hSpacher(hight: 10.0),
-                          Divider(
-                            color: Colors.black,
-                            height: 1,
-                          ),
+                          // Divider(
+                          //   color: Colors.black,
+                          //   height: 1,
+                          // ),
                           ListView.builder(
                               shrinkWrap: true,
                               physics: NeverScrollableScrollPhysics(),
@@ -101,9 +104,16 @@ class _Home_PageState extends State<Home_Page> {
                                     as Map<String, dynamic>;
                                
                                 return ListTile(
-                                  title: Text(chilData['title']),
+                                  leading: CircleAvatar(
+                                    backgroundImage: NetworkImage(chilData['imge']),
+                                  ),
+                                  title: Text(chilData['name']),
                                   subtitle: Text(chilData['subtitle']),
-                                  trailing: Text(chilData['amount']),
+                                  trailing: Column(
+                                    children: [
+                                      Text(chilData['amount']), Text(chilData['trilExpence']),
+                                    ],
+                                  ),
                                 );
                               })
                         ],

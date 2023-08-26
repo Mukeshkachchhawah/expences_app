@@ -38,7 +38,7 @@ TextStyle loginmid2() {
   return TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
 }
 
-TextStyle textStyles() {
+TextStyle textStyles18() {
   return TextStyle(fontSize: 18, fontWeight: FontWeight.bold,);
 }
 
