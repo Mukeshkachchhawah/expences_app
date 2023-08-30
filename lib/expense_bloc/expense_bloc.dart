@@ -12,15 +12,20 @@ part 'expense_state.dart';
 class ExpenseBloc extends Bloc<ExpenseEvent, ExpenseState> {
   AppDatabase db;
   ExpenseBloc({required this.db}) : super(ExpenseInitialState()) {
-    on<AddExpenseEvent>((event, emit) async{
+    on<AddExpenseEvent>((event, emit) async {
       emit(ExpenseLodingState());
       var check = await db.addNewNote(event.newExpense);
-      if(check){
+      if (check) {
         var data = await db.getAllExpense();
         emit(ExpenseLoadedState(lodedExpenses: data));
-      }else{
-        emit(ExpenseErroState(erroExpenses: "not added"));
+      } else {
+        emit(ExpenseErroState(erroMaess: "not added"));
       }
+    });
+
+    on<FatchAllExpenseEvent>((event, emit) async {
+      var data = await db.getAllExpense();
+      emit(ExpenseLoadedState(lodedExpenses: data));
     });
   }
 }

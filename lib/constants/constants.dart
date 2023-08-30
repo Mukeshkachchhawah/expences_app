@@ -63,7 +63,6 @@ class Constants {
         },
       ]
     },
-
   ];
 }
 
@@ -72,14 +71,14 @@ class AppConstants {
 
   static const List<Map<String, dynamic>> catagery = [
     {"id": "1", "name": "car", "image": ImageConstants.carimg},
-    {"id": "2", "name": "car", "image": ImageConstants.cokaimg},
-    {"id": "3", "name": "car", "image": ImageConstants.flaytimg},
-    {"id": "4", "name": "car", "image": ImageConstants.frenchimg},
-    {"id": "5", "name": "car", "image": ImageConstants.helicopatr},
-    {"id": "6", "name": "car", "image": ImageConstants.movieimg},
-    {"id": "7", "name": "car", "image": ImageConstants.popcornimg},
-    {"id": "8", "name": "car", "image": ImageConstants.shoppingimg},
-    {"id": "9", "name": "car", "image": ImageConstants.train},
-    {"id": "10", "name": "car", "image": ImageConstants.travelingimg}
+    {"id": "2", "name": "coka", "image": ImageConstants.cokaimg},
+    {"id": "3", "name": "flayting", "image": ImageConstants.flaytimg},
+    {"id": "4", "name": "frenching", "image": ImageConstants.frenchimg},
+    {"id": "5", "name": "helicopatr", "image": ImageConstants.helicopatr},
+    {"id": "6", "name": "movie", "image": ImageConstants.movieimg},
+    {"id": "7", "name": "popcorn", "image": ImageConstants.popcornimg},
+    {"id": "8", "name": "shopping", "image": ImageConstants.shoppingimg},
+    {"id": "9", "name": "train", "image": ImageConstants.train},
+    {"id": "10", "name": "traveling", "image": ImageConstants.travelingimg}
   ];
 }

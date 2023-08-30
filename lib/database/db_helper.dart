@@ -13,7 +13,7 @@ class AppDatabase {
   /// Expence Data
   var EXPENSE_TABLE = "expense";
   // var USER_COLUMN_ID = "uid";
-  var EXPENSE_COLUM_ID = "exp_id";
+  var EXPENSE_COLUM_ID = "exp_id"; 
   var EXPENSE_COLUM_TITLE = "exp_title";
   var EXPENSE_COLUM_DESC = "exp_desc";
   var EXPENSE_COLUM_AMOUNT = "exp_amount";
@@ -35,7 +35,7 @@ class AppDatabase {
       var createTableQuery =
           "create table $USER_TABLE ($USER_COLUMN_ID integer primary key autoincrement, $USER_COLUMN_EMAIL text unique, $USER_COLUMN_PASSWORD text)";
       var expenseTableQuery =
-          "create table $EXPENSE_TABLE ($EXPENSE_COLUM_ID integer primary key autoincrement, $USER_COLUMN_ID integer, $EXPENSE_COLUM_TITLE text, $EXPENSE_COLUM_DESC text, $EXPENSE_COLUM_AMOUNT real, $EXPENSE_COLUM_BALENCE text, $EXPENSE_COLUM_TYPE integer, $EXPENSE_COLUM_CATGERY_ID integer, $EXPENSE_COLUM_CATGERY_DATE String)";
+          "create table $EXPENSE_TABLE ($EXPENSE_COLUM_ID integer primary key autoincrement, $USER_COLUMN_ID integer, $EXPENSE_COLUM_TITLE text, $EXPENSE_COLUM_DESC text, $EXPENSE_COLUM_AMOUNT real, $EXPENSE_COLUM_BALENCE real, $EXPENSE_COLUM_TYPE integer, $EXPENSE_COLUM_CATGERY_ID integer, $EXPENSE_COLUM_CATGERY_DATE String)";
       db.execute(createTableQuery);
       db.execute(expenseTableQuery);
     });
@@ -81,6 +81,9 @@ class AppDatabase {
         where: "$USER_COLUMN_EMAIL = ?", whereArgs: [email]);
     return check > 0;
   }
+
+  //// function in Expense App /////
+  ///add New Expense
 
   Future<bool> addNewNote(ExpenseModal newExpense) async {
     var db = await openDB();

@@ -1,9 +1,14 @@
+import 'package:expense_app/expense_bloc/expense_bloc.dart';
 import 'package:expense_app/screens/onbording/splace_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'database/db_helper.dart';
+
+
 void main() {
-  runApp(const MyApp());
+  runApp(BlocProvider(create: (context) => ExpenseBloc(db: AppDatabase()), child: MyApp(),));
 }
 
 class MyApp extends StatelessWidget {

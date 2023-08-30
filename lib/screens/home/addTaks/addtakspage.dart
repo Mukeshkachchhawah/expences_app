@@ -1,5 +1,8 @@
+import 'package:expense_app/expense_bloc/expense_bloc.dart';
+import 'package:expense_app/modal/expense_modal.dart';
 import 'package:expense_app/ui_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../constants/constants.dart';
 
@@ -11,10 +14,16 @@ class AddTaksPage extends StatefulWidget {
 }
 
 class _AddTaksPageState extends State<AddTaksPage> {
-  List<String> addcard = ["Cardit", "Debit"];
   var titleController = TextEditingController();
   var descController = TextEditingController();
   var amountController = TextEditingController();
+
+  var SeletededCard = -1;
+
+  List<String> arrTransactionCardTypes = ["cardit", "debit"];
+  String seletRrasactionCardtypes = "debit";
+
+  var selectcat = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -70,68 +79,100 @@ class _AddTaksPageState extends State<AddTaksPage> {
               height: 20,
             ),
             SizedBox(
-              height: 40,
-              width: double.infinity,
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.grey),
-                  onPressed: () {
-                    showModalBottomSheet(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(20))),
-                      context: context,
-                      builder: (context) {
-                        return GridView.builder(
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 4),
-                          itemCount: AppConstants.catagery.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.only(top: 40),
-                              child: Column(
-                                children: [
-                                  CircleAvatar(
-                                    child: Image.asset(
-                                        AppConstants.catagery[index]['image']),
+                height: 40,
+                width: double.infinity,
+                child: ElevatedButton(
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.grey),
+                    onPressed: () {
+                      showModalBottomSheet(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20))),
+                        context: context,
+                        builder: (context) {
+                          return GridView.builder(
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 4),
+                            itemCount: AppConstants.catagery.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.only(top: 40),
+                                child: InkWell(
+                                  onTap: () {
+                                    /// selet image show bottom sheet
+                                    selectcat = index;
+                                    setState(() {});
+                                    Navigator.pop(context);
+                                  },
+                                  child: Column(
+                                    children: [
+                                      CircleAvatar(
+                                        child: Image.asset(AppConstants
+                                            .catagery[index]['image']),
+                                      ),
+                                      Text(
+                                          "${AppConstants.catagery[index]['name']}"),
+                                    ],
                                   ),
-                                  Text(
-                                      "${AppConstants.catagery[index]['name']}"),
-                                ],
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      );
+                    },
+                    child: selectcat >= 0
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                AppConstants.catagery[selectcat]['image'],
+                                width: 30,
                               ),
-                            );
-                          },
-                        );
-                      },
-                    );
-                  },
-                  child: Text("Add Catagory")),
+                              wSpacher(width: 10.0),
+                              Text(AppConstants.catagery[selectcat]['name'])
+                            ],
+                          )
+                        : Text("Chose Category"))),
+            DropdownButton(
+              /// difalut value in dropdown value
+              value: seletRrasactionCardtypes,
+              items: arrTransactionCardTypes.map((e) {
+                return DropdownMenuItem(
+                  child: Text(e),
+                  value: e,
+                );
+              }).toList(),
+              onChanged: (value) {
+                seletRrasactionCardtypes = value!;
+                setState(() {});
+              },
             ),
-            // DropdownButton(items: [
-            //   DropdownMenuItem(
-            //     child: FilledButton.icon(
-            //         onPressed: () {},
-            //         icon: Icon(Icons.abc),
-            //         label: Text("data")),
-            //   ),
-            //   DropdownMenuItem(
-            //     child: FilledButton.icon(
-            //         onPressed: () {},
-            //         icon: Icon(Icons.abc),
-            //         label: Text("data")),
-            //   ),
-            //   DropdownMenuItem(
-            //     child: FilledButton.icon(
-            //         onPressed: () {},
-            //         icon: Icon(Icons.abc),
-            //         label: Text("data")),
-            //   )
-            // ], onChanged: (value) {}),
-
-
-
-
+            SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+                height: 40,
+                width: double.infinity,
+                child: ElevatedButton(
+                    onPressed: () {
+                      context.read<ExpenseBloc>().add(AddExpenseEvent(
+                          newExpense: ExpenseModal(
+                              exp_title: titleController.text.toString(),
+                              exp_desc: descController.text.toString(),
+                              exp_amount:
+                                  int.parse(amountController.text.toString()),
+                              exp_balence: 0,
+                              exp_typ:
+                                  seletRrasactionCardtypes == "debit" ? 0 : 1,
+                              exp_cat: selectcat,
+                              exp_date: DateTime.now().toString())));
+                      Navigator.pop(context);
+                    },
+                    child: Icon(Icons.add)))
           ],
         ),
       ),
