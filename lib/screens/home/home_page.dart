@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:expense_app/expense_bloc/expense_bloc.dart';
 import 'package:expense_app/modal/expense_modal.dart';
 import 'package:expense_app/modal/filtereExpense_modal.dart';
@@ -16,6 +18,8 @@ class Home_Page extends StatefulWidget {
 }
 
 class _Home_PageState extends State<Home_Page> {
+  /// arrFilterExpense ko global kar dete hain jise puri ui me excce kar sakte hain
+  List<FilterExpensceModal> arrFilterExpensceModal = [];
   @override
   void initState() {
     // TODO: implement initState
@@ -77,14 +81,34 @@ class _Home_PageState extends State<Home_Page> {
               child: Text("${state.erroMaess}"),
             );
           } else if (state is ExpenseLoadedState) {
-            var arrData = state.lodedExpenses;
-            return arrData.isNotEmpty
+            var arrData = state.arrExpenses;
+            getDateWishTransaction(arrData);
+            return arrFilterExpensceModal.isNotEmpty
                 ? ListView.builder(
-                    itemCount: arrData.length,
+                    itemCount: arrFilterExpensceModal.length,
                     itemBuilder: (ctx, index) {
-                      getDateWishTransaction(arrData);
-                      return ListTile(
-                        title: Text("${arrData[index].exp_title}"),
+                      return Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(arrFilterExpensceModal[index].date),
+                              Text(arrFilterExpensceModal[index].amount)
+                            ],
+                          ),
+                          ListView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: arrFilterExpensceModal[index].arrExpenseModal.length,
+                            itemBuilder: (context, subindex) {
+                              var arreach = arrFilterExpensceModal[index].arrExpenseModal[subindex];
+                            return ListTile(
+                              title: Text(arreach.exp_title),
+                              subtitle: Text(arreach.exp_desc),
+                              trailing: Text("\$ ${arreach.exp_amount}"),
+                            );
+                          },)
+                        ],
                       );
                     },
                   )
@@ -243,8 +267,8 @@ class _Home_PageState extends State<Home_Page> {
   }
 
   void getDateWishTransaction(List<ExpenseModal> data) {
+    arrFilterExpensceModal.clear();
     /// Fliter Expense modal
-    List<FilterExpensceModal> arrFilterExpensceModal = [];
 
     /// get unique Dates
     List<String> arrUniqueDate = [];
@@ -301,9 +325,9 @@ class _Home_PageState extends State<Home_Page> {
     }
 
     /// print date and amount
-    for (FilterExpensceModal modal in arrFilterExpensceModal) {
+    /* for (FilterExpensceModal modal in arrFilterExpensceModal) {
       print(
           "Date : ${modal.date} \n ${modal.amount}\n ${modal.arrExpenseModal}");
-    }
+    } */
   }
 }

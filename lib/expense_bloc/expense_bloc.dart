@@ -17,7 +17,7 @@ class ExpenseBloc extends Bloc<ExpenseEvent, ExpenseState> {
       var check = await db.addNewNote(event.newExpense);
       if (check) {
         var data = await db.getAllExpense();
-        emit(ExpenseLoadedState(lodedExpenses: data));
+        emit(ExpenseLoadedState(arrExpenses: data));
       } else {
         emit(ExpenseErroState(erroMaess: "not added"));
       }
@@ -25,7 +25,7 @@ class ExpenseBloc extends Bloc<ExpenseEvent, ExpenseState> {
 
     on<FatchAllExpenseEvent>((event, emit) async {
       var data = await db.getAllExpense();
-      emit(ExpenseLoadedState(lodedExpenses: data));
+      emit(ExpenseLoadedState(arrExpenses: data));
     });
   }
 }

@@ -10,8 +10,8 @@ class ExpenseLodingState extends ExpenseState {}
 class ExpenseLoadedState extends ExpenseState {
   // Check Database folder
 //// check getAllData fache ListTpes
-  List<ExpenseModal> lodedExpenses;
-  ExpenseLoadedState({required this.lodedExpenses});
+  List<ExpenseModal> arrExpenses;
+  ExpenseLoadedState({required this.arrExpenses});
 }
 
 class ExpenseErroState extends ExpenseState {
