@@ -13,7 +13,7 @@ class AppDatabase {
   /// Expence Data
   var EXPENSE_TABLE = "expense";
   // var USER_COLUMN_ID = "uid";
-  var EXPENSE_COLUM_ID = "exp_id"; 
+  var EXPENSE_COLUM_ID = "exp_id";
   var EXPENSE_COLUM_TITLE = "exp_title";
   var EXPENSE_COLUM_DESC = "exp_desc";
   var EXPENSE_COLUM_AMOUNT = "exp_amount";
@@ -92,7 +92,7 @@ class AppDatabase {
     return check > 0;
   }
 
-  getAllExpense() async {
+  Future<List<ExpenseModal>> getAllExpense() async {
     var db = await openDB();
     List<Map<String, dynamic>> expense = await db.query(EXPENSE_TABLE);
 
@@ -102,6 +102,7 @@ class AppDatabase {
       var eacModal = ExpenseModal.toform(eachExpense);
       arrExpense.add(eacModal);
     }
+    return arrExpense;
   }
 }
 

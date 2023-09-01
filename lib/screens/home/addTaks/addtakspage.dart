@@ -20,8 +20,8 @@ class _AddTaksPageState extends State<AddTaksPage> {
 
   var SeletededCard = -1;
 
-  List<String> arrTransactionCardTypes = ["cardit", "debit"];
-  String seletRrasactionCardtypes = "debit";
+  List<String> arrTransactionCardTypes = ["Debit", "Credit"];
+  String seletRrasactionCardtypes = "Debit";
 
   var selectcat = -1;
 
@@ -110,6 +110,7 @@ class _AddTaksPageState extends State<AddTaksPage> {
                                   child: Column(
                                     children: [
                                       CircleAvatar(
+                                        /// drop down image and text show
                                         child: Image.asset(AppConstants
                                             .catagery[index]['image']),
                                       ),
@@ -124,6 +125,8 @@ class _AddTaksPageState extends State<AddTaksPage> {
                         },
                       );
                     },
+                    //logic in chose category
+                    /// select category >=0 hain to add image or name
                     child: selectcat >= 0
                         ? Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -155,7 +158,7 @@ class _AddTaksPageState extends State<AddTaksPage> {
               height: 20,
             ),
             SizedBox(
-                height: 40,
+                height: 50,
                 width: double.infinity,
                 child: ElevatedButton(
                     onPressed: () {
@@ -166,13 +169,15 @@ class _AddTaksPageState extends State<AddTaksPage> {
                               exp_amount:
                                   int.parse(amountController.text.toString()),
                               exp_balence: 0,
+                              exp_id: int.parse(
+                                  AppConstants.catagery[selectcat]['id']),
                               exp_typ:
                                   seletRrasactionCardtypes == "debit" ? 0 : 1,
                               exp_cat: selectcat,
                               exp_date: DateTime.now().toString())));
                       Navigator.pop(context);
                     },
-                    child: Icon(Icons.add)))
+                    child: Text('Add Transaction')))
           ],
         ),
       ),

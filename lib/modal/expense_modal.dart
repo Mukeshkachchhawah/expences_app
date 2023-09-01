@@ -28,11 +28,11 @@ class ExpenseModal {
         uid: map[AppDatabase().USER_COLUMN_ID],
         exp_title: map[AppDatabase().EXPENSE_COLUM_TITLE],
         exp_desc: map[AppDatabase().EXPENSE_COLUM_DESC],
-        exp_amount: map[AppDatabase().EXPENSE_COLUM_DESC],
-        exp_balence: map[AppDatabase().EXPENSE_COLUM_DESC],
-        exp_typ: map[AppDatabase().EXPENSE_COLUM_DESC],
-        exp_cat: map[AppDatabase().EXPENSE_COLUM_DESC],
-        exp_date: map[AppDatabase().EXPENSE_COLUM_DESC]);
+        exp_amount: map[AppDatabase().EXPENSE_COLUM_AMOUNT],
+        exp_balence: map[AppDatabase().EXPENSE_COLUM_BALENCE],
+        exp_typ: map[AppDatabase().EXPENSE_COLUM_TYPE],
+        exp_cat: map[AppDatabase().EXPENSE_COLUM_CATGERY_ID],
+        exp_date: map[AppDatabase().EXPENSE_COLUM_CATGERY_DATE]);
   }
 
   Map<String, dynamic> toMap() {
