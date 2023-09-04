@@ -19,11 +19,12 @@ class ExpenseBloc extends Bloc<ExpenseEvent, ExpenseState> {
         var data = await db.getAllExpense();
         emit(ExpenseLoadedState(arrExpenses: data));
       } else {
-        emit(ExpenseErroState(erroMaess: "not added"));
+        emit(ExpenseErroState(errorMsg: "Expense Not Added!!"));
       }
     });
 
     on<FatchAllExpenseEvent>((event, emit) async {
+      emit(ExpenseLodingState());
       var data = await db.getAllExpense();
       emit(ExpenseLoadedState(arrExpenses: data));
     });

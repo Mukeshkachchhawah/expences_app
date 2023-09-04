@@ -11,7 +11,7 @@ class AppDatabase {
   var USER_COLUMN_PASSWORD = "password";
 
   /// Expence Data
-  var EXPENSE_TABLE = "expense";
+/*   var EXPENSE_TABLE = "expense";
   // var USER_COLUMN_ID = "uid";
   var EXPENSE_COLUM_ID = "exp_id";
   var EXPENSE_COLUM_TITLE = "exp_title";
@@ -19,8 +19,20 @@ class AppDatabase {
   var EXPENSE_COLUM_AMOUNT = "exp_amount";
   var EXPENSE_COLUM_BALENCE = "exp_balence";
   var EXPENSE_COLUM_TYPE = "exp_typ"; // 0 for debit card and 1 for credit card
-  var EXPENSE_COLUM_CATGERY_ID = "exp_cat";
+  var EXPENSE_COLUM_CATGERY_ID = "exp_cat_id";
   var EXPENSE_COLUM_CATGERY_DATE = "exp_date"; // current milli stared here
+ */
+
+  var EXPENSE_TABLE = "expense";
+//var USER_COLUMN_ID = "uid";
+  var EXPENSE_COLUMN_ID = "exp_id";
+  var EXPENSE_COLUMN_TITLE = "exp_title";
+  var EXPENSE_COLUMN_DESC = "exp_desc";
+  var EXPENSE_COLUMN_AMT = "exp_amt";
+  var EXPENSE_COLUMN_BAL = "exp_bal";
+  var EXPENSE_COLUMN_TYPE = "exp_type"; //0 for debit & 1 for credit
+  var EXPENSE_COLUMN_CAT_ID = "exp_cat_id";
+  var EXPENSE_COLUMN_DATE = "exp_date"; //current milli stored here
 
   Future<Database> openDB() async {
     //directory path
@@ -33,9 +45,11 @@ class AppDatabase {
 
     return await openDatabase(dbPath, version: 1, onCreate: (db, version) {
       var createTableQuery =
-          "create table $USER_TABLE ($USER_COLUMN_ID integer primary key autoincrement, $USER_COLUMN_EMAIL text unique, $USER_COLUMN_PASSWORD text)";
+          "create table $USER_TABLE ( $USER_COLUMN_ID integer primary key autoincrement, $USER_COLUMN_EMAIL text unique, $USER_COLUMN_PASSWORD text)";
       var expenseTableQuery =
-          "create table $EXPENSE_TABLE ($EXPENSE_COLUM_ID integer primary key autoincrement, $USER_COLUMN_ID integer, $EXPENSE_COLUM_TITLE text, $EXPENSE_COLUM_DESC text, $EXPENSE_COLUM_AMOUNT real, $EXPENSE_COLUM_BALENCE real, $EXPENSE_COLUM_TYPE integer, $EXPENSE_COLUM_CATGERY_ID integer, $EXPENSE_COLUM_CATGERY_DATE String)";
+                "create table $EXPENSE_TABLE ( $EXPENSE_COLUMN_ID integer primary key autoincrement, $USER_COLUMN_ID integer, $EXPENSE_COLUMN_TITLE text, $EXPENSE_COLUMN_DESC text, $EXPENSE_COLUMN_AMT real, $EXPENSE_COLUMN_BAL real, $EXPENSE_COLUMN_TYPE integer, $EXPENSE_COLUMN_CAT_ID integer, $EXPENSE_COLUMN_DATE text)";
+
+         // "create table $EXPENSE_TABLE ( $EXPENSE_COLUM_ID integer primary key autoincrement, $USER_COLUMN_ID integer, $EXPENSE_COLUM_TITLE text, $EXPENSE_COLUM_DESC text, $EXPENSE_COLUM_AMOUNT real, $EXPENSE_COLUM_BALENCE real, $EXPENSE_COLUM_TYPE integer, $EXPENSE_COLUM_CATGERY_ID integer, $EXPENSE_COLUM_CATGERY_DATE text)";
       db.execute(createTableQuery);
       db.execute(expenseTableQuery);
     });
@@ -99,7 +113,7 @@ class AppDatabase {
     List<ExpenseModal> arrExpense = [];
 
     for (Map<String, dynamic> eachExpense in expense) {
-      var eacModal = ExpenseModal.toform(eachExpense);
+      var eacModal = ExpenseModal.fromMap(eachExpense);
       arrExpense.add(eacModal);
     }
     return arrExpense;

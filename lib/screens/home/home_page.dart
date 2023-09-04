@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:expense_app/constants/constants.dart';
 import 'package:expense_app/expense_bloc/expense_bloc.dart';
 import 'package:expense_app/modal/expense_modal.dart';
 import 'package:expense_app/modal/filtereExpense_modal.dart';
@@ -29,47 +30,7 @@ class _Home_PageState extends State<Home_Page> {
 
   @override
   Widget build(BuildContext context) {
-    var dummyData = Constants.transaction;
     return Scaffold(
-      /* 
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AddTaksPage()));
-              },
-              icon: Icon(
-                Icons.add,
-                color: Colors.black,
-
-                /* 
-                  //// add data button
-                      Padding(
-                        padding: const EdgeInsets.only(left: 330, top: 30),
-                        child: CircleAvatar(
-                          radius: 15,
-                          backgroundColor: Colors.red,
-                          child: Center(
-                            child: InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => AddTaksPage()));
-                                },
-                                child: Icon(Icons.add)),
-                          ),
-                        ),
-                      ),
-                 */
-              ))
-        ],
-      ),
-    */
       body: BlocBuilder<ExpenseBloc, ExpenseState>(
         builder: (context, state) {
           if (state is ExpenseLodingState) {
@@ -78,172 +39,94 @@ class _Home_PageState extends State<Home_Page> {
             );
           } else if (state is ExpenseErroState) {
             return Center(
-              child: Text("${state.erroMaess}"),
+              child: Text("${state.errorMsg}"),
             );
           } else if (state is ExpenseLoadedState) {
             var arrData = state.arrExpenses;
             getDateWishTransaction(arrData);
             return arrFilterExpensceModal.isNotEmpty
-                ? ListView.builder(
-                    itemCount: arrFilterExpensceModal.length,
-                    itemBuilder: (ctx, index) {
-                      return Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(arrFilterExpensceModal[index].date),
-                              Text(arrFilterExpensceModal[index].amount)
-                            ],
-                          ),
-                          ListView.builder(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: arrFilterExpensceModal[index].arrExpenseModal.length,
-                            itemBuilder: (context, subindex) {
-                              var arreach = arrFilterExpensceModal[index].arrExpenseModal[subindex];
-                            return ListTile(
-                              title: Text(arreach.exp_title),
-                              subtitle: Text(arreach.exp_desc),
-                              trailing: Text("\$ ${arreach.exp_amount}"),
-                            );
-                          },)
-                        ],
-                      );
-                    },
-                  )
-
-/* 
-                Padding(
+                ? Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          //// add data button
-                          /*    Padding(
-                            padding: const EdgeInsets.only(left: 330, top: 30),
-                            child: CircleAvatar(
-                              radius: 15,
-                              backgroundColor: Colors.red,
-                              child: Center(
-                                child: InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  AddTaksPage()));
-                                    },
-                                    child: Icon(Icons.add)),
-                              ),
-                            ),
-                          ), */
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 50, bottom: 50),
-                            child: Column(
-                              children: [
-                                Text(
-                                  "Spent this Week",
-                                  style: TextStyle(fontSize: 15),
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text("\$",
+                    child: ListView.builder(
+                      itemCount: arrFilterExpensceModal.length,
+                      itemBuilder: (_, index) {
+                        return Column(
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 100, bottom: 50),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "Spent this Week",
+                                    style: TextStyle(fontSize: 15),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("\$",
+                                          style: TextStyle(
+                                              fontSize: 30,
+                                              color: Colors.black54)),
+                                      wSpacher(width: 2.0),
+                                      Text(
+                                        "000",
+                                        style: TextStyle(
+                                            fontSize: 60,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                      Text(
+                                        ".00",
                                         style: TextStyle(
                                             fontSize: 30,
-                                            color: Colors.black54)),
-                                    wSpacher(width: 2.0),
-                                    Text(
-                                      "295",
-                                      style: TextStyle(
-                                          fontSize: 60,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    Text(
-                                      ".95",
-                                      style: TextStyle(
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.w500),
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 1000,
-                            child: Expanded(
-                              child: ListView.builder(
-                                physics: NeverScrollableScrollPhysics(),
-                                itemCount: arrData.length,
-                                itemBuilder: (_, index) {
-                                  getDateWishTransaction(arrData);
-                                  return Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 68, right: 20),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              dummyData[index]['date'],
-                                              style: textStyles18(),
-                                            ),
-                                            Text(
-                                                "\$${dummyData[index]['amount']}"),
-                                          ],
-                                        ),
-                                      ),
-                                      hSpacher(hight: 10.0),
-                                      // Divider(
-                                      //   color: Colors.black,
-                                      //   height: 1,
-                                      // ),
-                                      ListView.builder(
-                                          shrinkWrap: true,
-                                          physics:
-                                              NeverScrollableScrollPhysics(),
-                                          itemCount: arrData.length,
-                                          itemBuilder: (_, childIndex) {
-                                            var chilData = dummyData[index]
-                                                        ['dayTransaction']
-                                                    [childIndex]
-                                                as Map<String, dynamic>;
-
-                                            return ListTile(
-                                              leading: CircleAvatar(
-                                                backgroundImage: NetworkImage(
-                                                    chilData['imge']),
-                                              ),
-                                              title: Text(
-                                                  "${arrData[index].exp_title}"),
-                                              subtitle:
-                                                  Text(chilData['subtitle']),
-                                              trailing: Column(
-                                                children: [
-                                                  Text(chilData['amount']),
-                                                  Text(chilData['trilExpence']),
-                                                ],
-                                              ),
-                                            );
-                                          })
+                                            fontWeight: FontWeight.w500),
+                                      )
                                     ],
-                                  );
-                                },
+                                  ),
+                                ],
                               ),
                             ),
-                          ),
-                        ],
-                      ),
+
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  arrFilterExpensceModal[index].date,
+                                  style: textStyles18(),
+                                ),
+                                Text(arrFilterExpensceModal[index].amount),
+                              ],
+                            ),
+                            hSpacher(hight: 10.0),
+                            // Divider(
+                            //   color: Colors.black,
+                            //   height: 1,
+                            // ),
+                            ListView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: arrFilterExpensceModal[index]
+                                    .arrExpenseModal
+                                    .length,
+                                itemBuilder: (_, childIndex) {
+                                  var arreach = arrFilterExpensceModal[index]
+                                      .arrExpenseModal[childIndex];
+
+                                  return ListTile(
+                                    leading: CircleAvatar(
+                                      child: Image.asset(AppConstants
+                                          .catagery[index]['image']),
+                                    ),
+                                    title: Text(arreach.exp_title),
+                                    subtitle: Text(arreach.exp_desc),
+                                    trailing: Text("\$ ${arreach.exp_amt}"),
+                                  );
+                                })
+                          ],
+                        );
+                      },
                     ),
                   )
-               */
                 : Center(
                     child: Text("Data Is Empty"),
                   );
@@ -251,6 +134,7 @@ class _Home_PageState extends State<Home_Page> {
           return Container();
         },
       ),
+
       floatingActionButton: FloatingActionButton(
         tooltip: 'Add Tracation',
         onPressed: () {
@@ -262,20 +146,20 @@ class _Home_PageState extends State<Home_Page> {
         },
         child: Icon(Icons.add),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
 
   void getDateWishTransaction(List<ExpenseModal> data) {
     arrFilterExpensceModal.clear();
-    /// Fliter Expense modal
 
+    /// Fliter Expense modal
     /// get unique Dates
     List<String> arrUniqueDate = [];
 
     /// loop 1
     for (ExpenseModal eachExpensetrans in data) {
-      var date = DateTime.parse(eachExpensetrans.exp_date);
+      var date = DateTime.parse(eachExpensetrans.date);
       var eachDate =
 
           /// creant date
@@ -291,31 +175,27 @@ class _Home_PageState extends State<Home_Page> {
     /// loop 2
     for (String eachDate in arrUniqueDate) {
       List<ExpenseModal> eachDateTranstion = [];
-
       num amount = 0;
 
       for (ExpenseModal eachtrans in data) {
-        var date = DateTime.parse(eachtrans.exp_date);
+        var date = DateTime.parse(eachtrans.date);
         //// creant date 31-08-2023
+        ////// creant date
         var mDate =
-
-            /// creant date
             "${date.day}-${date.month.toString().length < 2 ? "0${date.month}" : date.month}-${date.year}";
-
         if (eachDate == mDate) {
           eachDateTranstion.add(eachtrans);
 
           /// logic in dabit and cardit ke liye
-          if (eachtrans.exp_typ == 0) {
+          if (eachtrans.exp_type == 0) {
             // debit card se kam kar do
-            amount -= eachtrans.exp_amount;
+            amount -= eachtrans.exp_amt;
           } else {
             // cardit card me add kar do
-            amount += eachtrans.exp_amount;
+            amount += eachtrans.exp_amt;
           }
         }
       }
-
       //// add Fliter Date Transtion
       /// add expense date or expense amount and date transtion
       arrFilterExpensceModal.add(FilterExpensceModal(
@@ -323,11 +203,20 @@ class _Home_PageState extends State<Home_Page> {
           amount: amount.toString(),
           arrExpenseModal: eachDateTranstion));
     }
-
-    /// print date and amount
-    /* for (FilterExpensceModal modal in arrFilterExpensceModal) {
-      print(
-          "Date : ${modal.date} \n ${modal.amount}\n ${modal.arrExpenseModal}");
-    } */
   }
+
+/*   void getDaywishName(DateTime dateTime) {
+    String day = "${dateTime.weekday}";
+    switch (day) {
+      case 1:
+        return "Sunday";
+    }
+  }
+
+  void getMonthWishTransaction() {
+    //  List<String> weeklyTran = [];
+    DateTime? weeklyTran;
+    DateTime day = DateTime.now();
+    for (int i = 1; i < 7; i++) {}
+  } */
 }

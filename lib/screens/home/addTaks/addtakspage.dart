@@ -18,7 +18,7 @@ class _AddTaksPageState extends State<AddTaksPage> {
   var descController = TextEditingController();
   var amountController = TextEditingController();
 
-  var SeletededCard = -1;
+  // var SeletededCard = -1;
 
   List<String> arrTransactionCardTypes = ["Debit", "Credit"];
   String seletRrasactionCardtypes = "Debit";
@@ -31,6 +31,7 @@ class _AddTaksPageState extends State<AddTaksPage> {
       appBar: AppBar(
         elevation: 0,
         iconTheme: IconThemeData(color: Colors.black),
+        title: Text("New Transaction"),
         backgroundColor: Colors.white,
       ),
       body: Padding(
@@ -164,17 +165,19 @@ class _AddTaksPageState extends State<AddTaksPage> {
                     onPressed: () {
                       context.read<ExpenseBloc>().add(AddExpenseEvent(
                           newExpense: ExpenseModal(
+                              uid: 1,
                               exp_title: titleController.text.toString(),
                               exp_desc: descController.text.toString(),
-                              exp_amount:
+                              exp_amt:
                                   int.parse(amountController.text.toString()),
-                              exp_balence: 0,
+                              exp_bal: 0,
                               exp_id: int.parse(
                                   AppConstants.catagery[selectcat]['id']),
-                              exp_typ:
+                              exp_type:
                                   seletRrasactionCardtypes == "debit" ? 0 : 1,
-                              exp_cat: selectcat,
-                              exp_date: DateTime.now().toString())));
+                              cat_id: int.parse(
+                                  AppConstants.catagery[selectcat]['id']),
+                              date: DateTime.now().toString())));
                       Navigator.pop(context);
                     },
                     child: Text('Add Transaction')))
