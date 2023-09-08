@@ -10,4 +10,10 @@ class ImageConstants {
   static const String shoppingimg = "${imgPath}shopping.png";
   static const String train = "${imgPath}train.png";
   static const String travelingimg = "${imgPath}traveling.png";
+  static const String smartphoneimge = "${imgPath}smartphone.png";
+  static const String travelimage = "${imgPath}travel.png";
+  static const String restaurantimage = "${imgPath}restaurant.png";
+  static const String groceryimage = "${imgPath}grocery.png";
+  static const String fastfoodimage = "${imgPath}fastfood.png";
+  static const String coffeeimage = "${imgPath}coffee.png";
 }

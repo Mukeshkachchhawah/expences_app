@@ -31,7 +31,10 @@ class _AddTaksPageState extends State<AddTaksPage> {
       appBar: AppBar(
         elevation: 0,
         iconTheme: IconThemeData(color: Colors.black),
-        title: Text("New Transaction"),
+        title: Text(
+          "New Transaction",
+          style: TextStyle(color: Colors.black),
+        ),
         backgroundColor: Colors.white,
       ),
       body: Padding(
@@ -171,8 +174,6 @@ class _AddTaksPageState extends State<AddTaksPage> {
                               exp_amt:
                                   int.parse(amountController.text.toString()),
                               exp_bal: 0,
-                              exp_id: int.parse(
-                                  AppConstants.catagery[selectcat]['id']),
                               exp_type:
                                   seletRrasactionCardtypes == "debit" ? 0 : 1,
                               cat_id: int.parse(

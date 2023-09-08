@@ -11,17 +11,7 @@ class AppDatabase {
   var USER_COLUMN_PASSWORD = "password";
 
   /// Expence Data
-/*   var EXPENSE_TABLE = "expense";
-  // var USER_COLUMN_ID = "uid";
-  var EXPENSE_COLUM_ID = "exp_id";
-  var EXPENSE_COLUM_TITLE = "exp_title";
-  var EXPENSE_COLUM_DESC = "exp_desc";
-  var EXPENSE_COLUM_AMOUNT = "exp_amount";
-  var EXPENSE_COLUM_BALENCE = "exp_balence";
-  var EXPENSE_COLUM_TYPE = "exp_typ"; // 0 for debit card and 1 for credit card
-  var EXPENSE_COLUM_CATGERY_ID = "exp_cat_id";
-  var EXPENSE_COLUM_CATGERY_DATE = "exp_date"; // current milli stared here
- */
+
 
   var EXPENSE_TABLE = "expense";
 //var USER_COLUMN_ID = "uid";

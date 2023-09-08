@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:expense_app/constants/constants.dart';
 import 'package:expense_app/expense_bloc/expense_bloc.dart';
 import 'package:expense_app/modal/expense_modal.dart';
@@ -30,6 +28,8 @@ class _Home_PageState extends State<Home_Page> {
 
   @override
   Widget build(BuildContext context) {
+    var media = MediaQuery.of(context);
+
     return Scaffold(
       body: BlocBuilder<ExpenseBloc, ExpenseState>(
         builder: (context, state) {
@@ -44,92 +44,134 @@ class _Home_PageState extends State<Home_Page> {
           } else if (state is ExpenseLoadedState) {
             var arrData = state.arrExpenses;
             getDateWishTransaction(arrData);
-            return arrFilterExpensceModal.isNotEmpty
-                ? Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ListView.builder(
-                      itemCount: arrFilterExpensceModal.length,
-                      itemBuilder: (_, index) {
-                        return Column(
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 100, bottom: 50),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "Spent this Week",
-                                    style: TextStyle(fontSize: 15),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text("\$",
-                                          style: TextStyle(
-                                              fontSize: 30,
-                                              color: Colors.black54)),
-                                      wSpacher(width: 2.0),
-                                      Text(
-                                        "000",
-                                        style: TextStyle(
-                                            fontSize: 60,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      Text(
-                                        ".00",
-                                        style: TextStyle(
-                                            fontSize: 30,
-                                            fontWeight: FontWeight.w500),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  arrFilterExpensceModal[index].date,
-                                  style: textStyles18(),
-                                ),
-                                Text(arrFilterExpensceModal[index].amount),
-                              ],
-                            ),
-                            hSpacher(hight: 10.0),
-                            // Divider(
-                            //   color: Colors.black,
-                            //   height: 1,
-                            // ),
-                            ListView.builder(
-                                shrinkWrap: true,
-                                physics: NeverScrollableScrollPhysics(),
-                                itemCount: arrFilterExpensceModal[index]
-                                    .arrExpenseModal
-                                    .length,
-                                itemBuilder: (_, childIndex) {
-                                  var arreach = arrFilterExpensceModal[index]
-                                      .arrExpenseModal[childIndex];
-
-                                  return ListTile(
-                                    leading: CircleAvatar(
-                                      child: Image.asset(AppConstants
-                                          .catagery[index]['image']),
-                                    ),
-                                    title: Text(arreach.exp_title),
-                                    subtitle: Text(arreach.exp_desc),
-                                    trailing: Text("\$ ${arreach.exp_amt}"),
-                                  );
-                                })
-                          ],
-                        );
-                      },
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 60, left: 10, right: 30),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AddTaksPage(),
+                                ));
+                          },
+                          child: Icon(
+                            Icons.add,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
                     ),
-                  )
-                : Center(
-                    child: Text("Data Is Empty"),
-                  );
+                  ),
+                  hSpacher(hight: 20.0),
+                  Column(
+                    children: [
+                      Text(
+                        "Spent this Week",
+                        style: TextStyle(fontSize: 15),
+                      ),
+                      Align(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("\$",
+                                style: TextStyle(
+                                    fontSize: 30, color: Colors.black54)),
+                            wSpacher(width: 2.0),
+                            Text(
+                              "000",
+                              style: TextStyle(
+                                  fontSize: 60, fontWeight: FontWeight.w500),
+                            ),
+                            Text(
+                              ".00",
+                              style: TextStyle(
+                                  fontSize: 30, fontWeight: FontWeight.w500),
+                            )
+                          ],
+                        ),
+                      ),
+                      arrFilterExpensceModal.isNotEmpty
+                          ? Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                height: media.size.height * .9,
+                                child: ListView.builder(
+                                  // shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemCount: arrFilterExpensceModal.length,
+                                  itemBuilder: (_, index) {
+                                    return Column(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              arrFilterExpensceModal[index]
+                                                  .date,
+                                              style: textStyles18(),
+                                            ),
+                                            Text(arrFilterExpensceModal[index]
+                                                .amount),
+                                          ],
+                                        ),
+                                        hSpacher(hight: 10.0),
+                                        // Divider(
+                                        //   color: Colors.black,
+                                        //   height: 1,
+                                        // ),
+                                        ListView.builder(
+                                            shrinkWrap: true,
+                                            physics:
+                                                NeverScrollableScrollPhysics(),
+                                            itemCount:
+                                                arrFilterExpensceModal[index]
+                                                    .arrExpenseModal
+                                                    .length,
+                                            itemBuilder: (_, childIndex) {
+                                              var arreach =
+                                                  arrFilterExpensceModal[index]
+                                                          .arrExpenseModal[
+                                                      childIndex];
+
+                                              var image = AppConstants.catagery
+                                                  .firstWhere((element) =>
+                                                      element['id'] ==
+                                                      arreach.cat_id
+                                                          .toString())['image'];
+
+                                              return ListTile(
+                                                leading: CircleAvatar(
+                                                  child: Image.asset(image),
+                                                ),
+                                                title: Text(arreach.exp_title),
+                                                subtitle:
+                                                    Text(arreach.exp_desc),
+                                                trailing: Text(
+                                                    "\$ ${arreach.exp_amt}"),
+                                              );
+                                            })
+                                      ],
+                                    );
+                                  },
+                                ),
+                              ),
+                            )
+                          : Center(
+                              child: Text("Data Is Empty"),
+                            ),
+                    ],
+                  ),
+                ],
+              ),
+            );
           }
           return Container();
         },

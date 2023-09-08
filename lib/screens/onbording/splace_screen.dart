@@ -14,7 +14,7 @@ class Splace_Screen extends StatefulWidget {
 
   @override
   State<Splace_Screen> createState() => SplaceScreenState();
-} 
+}
 
 class SplaceScreenState extends State<Splace_Screen> {
   static const String LOGIN_KEY = "Login Page";
@@ -30,7 +30,7 @@ class SplaceScreenState extends State<Splace_Screen> {
     var sp = await SharedPreferences.getInstance();
     var islogin = sp.getBool(LOGIN_KEY);
     Timer(Duration(seconds: 5), () {
-      if (islogin != null) {                        
+      if (islogin != null) {
         if (islogin) {
           Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (context) => Main_Home()));
@@ -50,7 +50,7 @@ class SplaceScreenState extends State<Splace_Screen> {
     var orientation = MediaQuery.of(context);
     return Scaffold(
         // backgroundColor: Color(0xFFFFFF00),
-        backgroundColor: Color(0xFFFFF0),
+        backgroundColor: Colors.white,
         body: OrientationBuilder(
           builder: (context, orientation) {
             if (orientation == Orientation.portrait) {
