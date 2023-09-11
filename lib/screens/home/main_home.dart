@@ -14,11 +14,12 @@ class Main_Home extends StatefulWidget {
 class _Main_HomeState extends State<Main_Home> {
   int _seletedindex = 0;
 
-  void _onTab(int index){
+  void _onTab(int index) {
     setState(() {
       _seletedindex = index;
     });
   }
+
   List _pages = [
     Home_Page(),
     Graf(),
@@ -28,13 +29,13 @@ class _Main_HomeState extends State<Main_Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_seletedindex],
-      bottomNavigationBar: BottomNavigationBar(items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "home"),
-        BottomNavigationBarItem(icon: Icon(Icons.north_east), label: "H"),
-        BottomNavigationBarItem(icon: Icon(Icons.settings
-        ), label: "H")
-      ],
-      onTap: _onTab,
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "home"),
+          BottomNavigationBarItem(icon: Icon(Icons.north_east), label: "H"),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: "H")
+        ],
+        onTap: _onTab,
         currentIndex: _seletedindex,
       ),
     );

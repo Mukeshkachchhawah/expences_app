@@ -24,14 +24,20 @@ Widget wSpacher({width = 11.0}) {
   );
 }
 
-
-
-
-
-
+buttom(String text) {
+  return Container(
+    height: 50,
+    width: 100,
+    decoration: BoxDecoration(
+        border: Border.all(color: Colors.red),
+        borderRadius: BorderRadius.circular(10)),
+    child: Center(child: Text(text)),
+  );
+}
 
 TextStyle loginTop1() {
-  return TextStyle(fontSize: 30, fontWeight: FontWeight.bold,fontFamily: "Poppins");
+  return TextStyle(
+      fontSize: 30, fontWeight: FontWeight.bold, fontFamily: "Poppins");
 }
 
 TextStyle loginmid2() {
@@ -39,11 +45,12 @@ TextStyle loginmid2() {
 }
 
 TextStyle textStyles18() {
-  return TextStyle(fontSize: 18, fontWeight: FontWeight.bold,);
+  return TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+  );
 }
 
-TextStyle midtextStyles(Color){
+TextStyle midtextStyles(Color) {
   return TextStyle(fontSize: 16);
 }
-
-

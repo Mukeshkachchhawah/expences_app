@@ -101,10 +101,10 @@ class _Home_PageState extends State<Home_Page> {
                           ? Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: SizedBox(
-                                height: media.size.height * .9,
+                                height: media.size.height * .7,
                                 child: ListView.builder(
                                   // shrinkWrap: true,
-                                  physics: NeverScrollableScrollPhysics(),
+                                  //  physics: NeverScrollableScrollPhysics(),
                                   itemCount: arrFilterExpensceModal.length,
                                   itemBuilder: (_, index) {
                                     return Column(
@@ -191,20 +191,13 @@ class _Home_PageState extends State<Home_Page> {
       // floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
-
+/* 
   void getDateWishTransaction(List<ExpenseModal> data) {
     arrFilterExpensceModal.clear();
-
-    /// Fliter Expense modal
-    /// get unique Dates
     List<String> arrUniqueDate = [];
-
-    /// loop 1
     for (ExpenseModal eachExpensetrans in data) {
       var date = DateTime.parse(eachExpensetrans.date);
       var eachDate =
-
-          /// creant date
           "${date.day}-${date.month.toString().length < 2 ? "0${date.month}" : date.month}-${date.year}";
       print(eachDate);
 
@@ -214,51 +207,64 @@ class _Home_PageState extends State<Home_Page> {
     }
     print(arrUniqueDate);
 
-    /// loop 2
+// if (!arrUniqueDate.contains(eachDate)) { arrUniqueDate.add(eachDate);}} print(arrUniqueDate); /// loop 2
     for (String eachDate in arrUniqueDate) {
       List<ExpenseModal> eachDateTranstion = [];
       num amount = 0;
-
       for (ExpenseModal eachtrans in data) {
         var date = DateTime.parse(eachtrans.date);
-        //// creant date 31-08-2023
-        ////// creant date
         var mDate =
-            "${date.day}-${date.month.toString().length < 2 ? "0${date.month}" : date.month}-${date.year}";
+            "${date.day}-${date.month.toString().length < 2 ? "0 ${date.month}" : date.month}-${date.year}";
         if (eachDate == mDate) {
           eachDateTranstion.add(eachtrans);
-
-          /// logic in dabit and cardit ke liye
           if (eachtrans.exp_type == 0) {
-            // debit card se kam kar do
             amount -= eachtrans.exp_amt;
           } else {
-            // cardit card me add kar do
             amount += eachtrans.exp_amt;
           }
         }
       }
-      //// add Fliter Date Transtion
-      /// add expense date or expense amount and date transtion
       arrFilterExpensceModal.add(FilterExpensceModal(
           date: eachDate,
           amount: amount.toString(),
           arrExpenseModal: eachDateTranstion));
     }
   }
+ */
 
-/*   void getDaywishName(DateTime dateTime) {
-    String day = "${dateTime.weekday}";
-    switch (day) {
-      case 1:
-        return "Sunday";
+  void getDateWishTransaction(List<ExpenseModal> data) {
+    arrFilterExpensceModal.clear();
+    List<String> arrUniqueDate = [];
+    for (ExpenseModal eachExpensetrans in data) {
+      var date = DateTime.parse(eachExpensetrans.date);
+      var eachDate =
+          "${date.day}-${date.month.toString().length < 2 ? "0${date.month}" : date.month}-${date.year}";
+      print(eachDate);
+      if (!arrUniqueDate.contains(eachDate)) {
+        arrUniqueDate.add(eachDate);
+      }
+    }
+    print(arrUniqueDate);
+    for (String eachDate in arrUniqueDate) {
+      List<ExpenseModal> eachDateTranstion = [];
+      num amount = 0;
+      for (ExpenseModal eachtrans in data) {
+        var date = DateTime.parse(eachtrans.date);
+        var mDate =
+            "${date.day}-${date.month.toString().length < 2 ? "0${date.month}" : date.month}-${date.year}";
+        if (eachDate == mDate) {
+          eachDateTranstion.add(eachtrans);
+          if (eachtrans.exp_type == 0) {
+            amount -= eachtrans.exp_amt;
+          } else {
+            amount += eachtrans.exp_amt;
+          }
+        }
+      }
+      arrFilterExpensceModal.add(FilterExpensceModal(
+          date: eachDate,
+          amount: amount.toString(),
+          arrExpenseModal: eachDateTranstion));
     }
   }
-
-  void getMonthWishTransaction() {
-    //  List<String> weeklyTran = [];
-    DateTime? weeklyTran;
-    DateTime day = DateTime.now();
-    for (int i = 1; i < 7; i++) {}
-  } */
 }
