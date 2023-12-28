@@ -47,54 +47,47 @@ class _Home_PageState extends State<Home_Page> {
             return SingleChildScrollView(
               child: Column(
                 children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 60, left: 10, right: 30),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => AddTaksPage(),
-                                ));
-                          },
-                          child: Icon(
-                            Icons.add,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  hSpacher(hight: 20.0),
+                  hSpacher(hight: 40.0),
                   Column(
                     children: [
-                      Text(
-                        "Spent this Week",
-                        style: TextStyle(fontSize: 15),
-                      ),
-                      Align(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("\$",
-                                style: TextStyle(
-                                    fontSize: 30, color: Colors.black54)),
-                            wSpacher(width: 2.0),
-                            Text(
-                              "000",
-                              style: TextStyle(
-                                  fontSize: 60, fontWeight: FontWeight.w500),
-                            ),
-                            Text(
-                              ".00",
-                              style: TextStyle(
-                                  fontSize: 30, fontWeight: FontWeight.w500),
-                            )
-                          ],
+                      SizedBox(
+                        height: 200,
+                        width: double.infinity,
+                        child: Card(
+                          //   color: Colors.red,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Spent this Week",
+                                style: TextStyle(fontSize: 15),
+                              ),
+                              Align(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("\$",
+                                        style: TextStyle(
+                                            fontSize: 30,
+                                            color: Colors.black54)),
+                                    wSpacher(width: 2.0),
+                                    Text(
+                                      "000",
+                                      style: TextStyle(
+                                          fontSize: 60,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    Text(
+                                      ".00",
+                                      style: TextStyle(
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.w500),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       arrFilterExpensceModal.isNotEmpty
@@ -191,47 +184,8 @@ class _Home_PageState extends State<Home_Page> {
       // floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
-/* 
-  void getDateWishTransaction(List<ExpenseModal> data) {
-    arrFilterExpensceModal.clear();
-    List<String> arrUniqueDate = [];
-    for (ExpenseModal eachExpensetrans in data) {
-      var date = DateTime.parse(eachExpensetrans.date);
-      var eachDate =
-          "${date.day}-${date.month.toString().length < 2 ? "0${date.month}" : date.month}-${date.year}";
-      print(eachDate);
 
-      if (!arrUniqueDate.contains(eachDate)) {
-        arrUniqueDate.add(eachDate);
-      }
-    }
-    print(arrUniqueDate);
-
-// if (!arrUniqueDate.contains(eachDate)) { arrUniqueDate.add(eachDate);}} print(arrUniqueDate); /// loop 2
-    for (String eachDate in arrUniqueDate) {
-      List<ExpenseModal> eachDateTranstion = [];
-      num amount = 0;
-      for (ExpenseModal eachtrans in data) {
-        var date = DateTime.parse(eachtrans.date);
-        var mDate =
-            "${date.day}-${date.month.toString().length < 2 ? "0 ${date.month}" : date.month}-${date.year}";
-        if (eachDate == mDate) {
-          eachDateTranstion.add(eachtrans);
-          if (eachtrans.exp_type == 0) {
-            amount -= eachtrans.exp_amt;
-          } else {
-            amount += eachtrans.exp_amt;
-          }
-        }
-      }
-      arrFilterExpensceModal.add(FilterExpensceModal(
-          date: eachDate,
-          amount: amount.toString(),
-          arrExpenseModal: eachDateTranstion));
-    }
-  }
- */
-
+  /// data wish transaction
   void getDateWishTransaction(List<ExpenseModal> data) {
     arrFilterExpensceModal.clear();
     List<String> arrUniqueDate = [];

@@ -22,7 +22,8 @@ class _Main_HomeState extends State<Main_Home> {
 
   List _pages = [
     Home_Page(),
-    Graf(),
+    Expense_Month(),
+    // Graf(),
     Setting()
   ];
   @override

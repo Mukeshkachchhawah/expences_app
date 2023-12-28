@@ -2,5 +2,6 @@
     "java.configuration.updateBuildConfiguration": "interactive",
     "cSpell.words": [
         "Expensce"
-    ]
+    ],
+    "cmake.sourceDirectory": "E:/Mukesh flutter/expences_app/linux"
 }
