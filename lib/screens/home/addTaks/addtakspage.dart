@@ -175,7 +175,7 @@ class _AddTaksPageState extends State<AddTaksPage> {
                                   int.parse(amountController.text.toString()),
                               exp_bal: 0,
                               exp_type:
-                                  seletRrasactionCardtypes == "debit" ? 0 : 1,
+                                  seletRrasactionCardtypes == "Debit" ? 0 : 1,
                               cat_id: int.parse(
                                   AppConstants.catagery[selectcat]['id']),
                               date: DateTime.now().toString())));

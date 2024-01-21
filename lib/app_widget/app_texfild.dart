@@ -5,13 +5,10 @@ class App_TextFild extends StatelessWidget {
 
   String lebletext;
 
-
-
   App_TextFild({
     super.key,
     required this.text,
     required this.lebletext,
-   
   });
 
   @override
@@ -30,9 +27,7 @@ class App_TextFild extends StatelessWidget {
           ),
           TextFormField(
             onTap: () {},
-            validator: (value) {
-              
-            },
+            validator: (value) {},
             decoration: InputDecoration(
                 labelText: lebletext,
                 border: OutlineInputBorder(
@@ -46,4 +41,3 @@ class App_TextFild extends StatelessWidget {
     );
   }
 }
-

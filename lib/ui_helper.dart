@@ -12,9 +12,9 @@ class App_Colors {
   static final Color redColors = Color(0xFFFF0000);
 }
 
-Widget hSpacher({hight = 11.0}) {
+Widget hSpacher({mHight = 15.0}) {
   return SizedBox(
-    height: hight,
+    height: mHight,
   );
 }
 
@@ -48,6 +48,13 @@ TextStyle textStyles18() {
   return TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.bold,
+  );
+}
+
+TextStyle textStyles16() {
+  return TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w300,
   );
 }
 

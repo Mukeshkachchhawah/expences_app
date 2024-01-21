@@ -124,7 +124,7 @@ class _Expense_MonthState extends State<Expense_Month> {
                                   yValueMapper: (datum, index) => datum.y),
                             ],
                           ),
-                          hSpacher(hight: 20.0),
+                          hSpacher(mHight: 20.0),
                           Row(
                             children: [
                               buttom("Week"),
@@ -132,8 +132,6 @@ class _Expense_MonthState extends State<Expense_Month> {
                               buttom("Month")
                             ],
                           ),
-
-
 
                           SizedBox(
                             height: 260,
@@ -176,9 +174,6 @@ class _Expense_MonthState extends State<Expense_Month> {
                                   );
                                 }),
                           )
-                       
-
-
                         ],
                       ),
                     ),
@@ -202,7 +197,6 @@ class _Expense_MonthState extends State<Expense_Month> {
       ),
     );
   }
-
 
   void getMonthWiseTransaction(List<ExpenseModal> data) {
     arrFilterMonthExpense.clear();
@@ -257,6 +251,4 @@ class _Expense_MonthState extends State<Expense_Month> {
           arrExpenseModal: eachDateTrans));
     }
   }
-
-
 }

@@ -116,7 +116,7 @@ class _GrafState extends State<Setting> {
                           )
                         ],
                       ),
-                      hSpacher(hight: 20.0),
+                      hSpacher(mHight: 20.0),
                       Row(
                         children: [
                           buttom("Month"),

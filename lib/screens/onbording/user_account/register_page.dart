@@ -1,11 +1,11 @@
-import 'package:expense_app/screens/onbording/login_page.dart';
+import 'package:expense_app/screens/onbording/user_account/login_page.dart';
 import 'package:expense_app/ui_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../constructor/social_media.dart';
-import '../../database/db_helper.dart';
-import '../../modal/user_modal.dart';
+import '../../../constructor/social_media.dart';
+import '../../../database/db_helper.dart';
+import '../../../modal/user_modal.dart';
 
 class Register_Page extends StatefulWidget {
   const Register_Page({super.key});
@@ -139,7 +139,7 @@ class _Register_PageState extends State<Register_Page> {
                 ),
               ),
             ),
-            hSpacher(hight: 20.0),
+            hSpacher(mHight: 20.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -188,7 +188,7 @@ class _Register_PageState extends State<Register_Page> {
                 ),
               ],
             ),
-            hSpacher(hight: 20.0),
+            hSpacher(mHight: 20.0),
 
             /// Social Button
             SocialMedia()

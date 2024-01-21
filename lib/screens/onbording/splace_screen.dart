@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../home/main_home.dart';
-import 'login_page.dart';
-import 'register_page.dart';
+import 'bottom_bar_page.dart';
+import 'user_account/login_page.dart';
+import 'user_account/register_page.dart';
 
 class Splace_Screen extends StatefulWidget {
   const Splace_Screen({super.key});
@@ -32,8 +32,8 @@ class SplaceScreenState extends State<Splace_Screen> {
     Timer(Duration(seconds: 5), () {
       if (islogin != null) {
         if (islogin) {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => Main_Home()));
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => BottomBarPages()));
         } else {
           Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (context) => LoginScreen()));

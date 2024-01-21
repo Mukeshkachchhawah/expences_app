@@ -1,5 +1,7 @@
 import 'package:expense_app/modal/expense_modal.dart';
 
+
+///////// Filter Expensce weekly /////////////
 class FilterExpensceModal {
   String date;
   String amount;
@@ -11,6 +13,9 @@ class FilterExpensceModal {
       required this.arrExpenseModal});
 }
 
+
+///////// Filter Expensce Month wish /////////////
+
 class FilterExpensceModalMonthWise {
   String Month;
   String amount;
@@ -21,6 +26,9 @@ class FilterExpensceModalMonthWise {
       required this.amount,
       required this.arrExpenseModal});
 }
+
+
+///////// Filter Expensce Year wish /////////////
 
 class FilterExpensceModalYearWise {
   String year;

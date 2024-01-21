@@ -237,12 +237,12 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../constructor/social_media.dart';
-import '../../database/db_helper.dart';
-import '../../ui_helper.dart';
-import '../home/main_home.dart';
+import '../../../constructor/social_media.dart';
+import '../../../database/db_helper.dart';
+import '../../../ui_helper.dart';
+import '../bottom_bar_page.dart';
 import 'forget_pass.dart';
-import 'splace_screen.dart';
+import '../splace_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -358,7 +358,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => Main_Home(),
+                                            builder: (context) => BottomBarPages(),
                                           ));
                                     } else {
                                       // show error
@@ -377,7 +377,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       )
                       
                       ,
-                      hSpacher(hight: 20.0),
+                      hSpacher(mHight: 20.0),
                       Padding(
                         padding: const EdgeInsets.all(5),
                         child: Row(
