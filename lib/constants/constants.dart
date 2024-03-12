@@ -66,6 +66,7 @@ class Constants {
   ];
 }
 
+/// catagery
 class AppConstants {
   static final app_name = "Expenser";
 

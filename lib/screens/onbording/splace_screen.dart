@@ -29,18 +29,18 @@ class SplaceScreenState extends State<Splace_Screen> {
   void Shared_Preferenc() async {
     var sp = await SharedPreferences.getInstance();
     var islogin = sp.getBool(LOGIN_KEY);
-    Timer(Duration(seconds: 5), () {
+    Timer(const Duration(seconds: 5), () {
       if (islogin != null) {
         if (islogin) {
           Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => BottomBarPages()));
+              MaterialPageRoute(builder: (context) => const BottomBarPages()));
         } else {
           Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (context) => LoginScreen()));
         }
       } else {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => Register_Page()));
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const Register_Page()));
       }
     });
   }
@@ -62,13 +62,13 @@ class SplaceScreenState extends State<Splace_Screen> {
                       "assets/icon/wallet.png",
                       scale: 10,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
                       AppConstants.app_name,
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold),
                     )
                   ],
                 ),
@@ -83,10 +83,10 @@ class SplaceScreenState extends State<Splace_Screen> {
                       "assets/icon/wallet.png",
                       scale: 10,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
-                    Text(
+                    const Text(
                       "Response App",
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

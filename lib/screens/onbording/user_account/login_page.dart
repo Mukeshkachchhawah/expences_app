@@ -260,7 +260,7 @@ class _LoginScreenState extends State<LoginScreen> {
     var media = MediaQuery.of(context);
 
     return Scaffold(
-          backgroundColor: Colors.white,
+        backgroundColor: Colors.white,
         body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Column(
@@ -278,10 +278,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: 200,
                             width: 200),
                       ),
-                      Text(
-                        "Log in to your account",
-                        style: loginTop1()
-                      ),
+                      Text("Log in to your account", style: loginTop1()),
                       hSpacher(),
                       Text(
                         "Please enter your details to acces your account",
@@ -334,10 +331,17 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             InkWell(
                               onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => Forget_Pass(),));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Forget_Pass(),
+                                    ));
                               },
                               child: Text(
-                                "Forget Password?", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.bold),
+                                "Forget Password?",
+                                style: TextStyle(
+                                    color: Color(0xFFFF0000),
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
                           ],
@@ -345,38 +349,43 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       hSpacher(),
                       InkWell(
-                        onTap: ()async {
-                            if (portraitKey.currentState!.validate()) {
-                                    var check = await AppDatabase().authenticateUser(
-                                      email: emailController.text,
-                                      password: passwordController.text,
-                                    );
-                  
-                                    if (check) {
-                                      var pref = await SharedPreferences.getInstance();
-                                      pref.setBool(SplaceScreenState.LOGIN_KEY, true);
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => BottomBarPages(),
-                                          ));
-                                    } else {
-                                      // show error
-                                    }
-                                  }
+                        onTap: () async {
+                          if (portraitKey.currentState!.validate()) {
+                            var check = await AppDatabase().authenticateUser(
+                              email: emailController.text,
+                              password: passwordController.text,
+                            );
+
+                            if (check) {
+                              var pref = await SharedPreferences.getInstance();
+                              pref.setBool(SplaceScreenState.LOGIN_KEY, true);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => BottomBarPages(),
+                                  ));
+                            } else {
+                              // show error
+                            }
+                          }
                         },
                         child: Container(
                           height: 50,
                           width: 380,
                           decoration: BoxDecoration(
                               color: Color.fromARGB(255, 4, 19, 58),
-                              borderRadius: BorderRadius.circular(10)),child: Center(
-                                child: Text("Login", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),),
-                              ),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Center(
+                            child: Text(
+                              "Login",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.white),
+                            ),
+                          ),
                         ),
-                      )
-                      
-                      ,
+                      ),
                       hSpacher(mHight: 20.0),
                       Padding(
                         padding: const EdgeInsets.all(5),
@@ -405,17 +414,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Social_Midia_Button(
+                          SocialMidiaButton(
                               images:
                                   "https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png",
                               scale_value: 40,
                               textValue: "google"),
-                          Social_Midia_Button(
+                          SocialMidiaButton(
                               images:
                                   "https://1000logos.net/wp-content/uploads/2021/04/Facebook-logo.png",
                               scale_value: 20,
                               textValue: "Facbook"),
-                          Social_Midia_Button(
+                          SocialMidiaButton(
                               images:
                                   "https://cdn-icons-png.flaticon.com/512/2/2235.png",
                               scale_value: 20,

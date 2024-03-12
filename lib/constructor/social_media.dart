@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class Social_Midia_Button extends StatelessWidget {
+class SocialMidiaButton extends StatelessWidget {
   String images;
   double scale_value;
   String textValue;
-  Social_Midia_Button({required this.images, required this.scale_value, required this.textValue});
+  SocialMidiaButton({required this.images, required this.scale_value, required this.textValue});
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

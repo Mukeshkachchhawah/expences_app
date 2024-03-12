@@ -3,6 +3,7 @@ import 'package:expense_app/expense_bloc/expense_bloc.dart';
 import 'package:expense_app/modal/expense_modal.dart';
 import 'package:expense_app/modal/filtereExpense_modal.dart';
 import 'package:expense_app/screens/home/addTaks/addtakspage.dart';
+import 'package:expense_app/screens/onbording/user_account/login_page.dart';
 import 'package:expense_app/theme_provider/theme_provider.dart';
 import 'package:expense_app/ui_helper.dart';
 import 'package:flutter/material.dart';
@@ -33,8 +34,8 @@ class _Home_PageState extends State<Home_Page> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Expenso"),
-        leading: CircleAvatar(),
+        title: const Text("Expenso"),
+      
         actions: [
           // handle dart theme and light theme
           Switch(
@@ -45,14 +46,24 @@ class _Home_PageState extends State<Home_Page> {
           )
         ],
       ),
+      drawer: Drawer(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+            }, child: const Text("Log Out"))
+          ],
+        ),
+      ),
       body: BlocBuilder<ExpenseBloc, ExpenseState>(
         builder: (context, state) {
           if (state is ExpenseLodingState) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (state is ExpenseErroState) {
-            return Center(child: Text("${state.errorMsg}"));
+            return Center(child: Text(state.errorMsg));
           } else if (state is ExpenseLoadedState) {
             var arrData = state.arrExpenses;
             getDateWishTransaction(arrData);
@@ -71,7 +82,7 @@ class _Home_PageState extends State<Home_Page> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
+                            const Text(
                               "Spent this Week",
                               style: TextStyle(fontSize: 15),
                             ),
@@ -79,17 +90,17 @@ class _Home_PageState extends State<Home_Page> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text("\$",
+                                  const Text("\$",
                                       style: TextStyle(
                                           fontSize: 30, color: Colors.black54)),
                                   wSpacher(width: 2.0),
-                                  Text(
+                                  const Text(
                                     "000",
                                     style: TextStyle(
                                         fontSize: 60,
                                         fontWeight: FontWeight.w500),
                                   ),
-                                  Text(
+                                  const Text(
                                     ".00",
                                     style: TextStyle(
                                         fontSize: 30,
@@ -105,7 +116,7 @@ class _Home_PageState extends State<Home_Page> {
                     hSpacher(),
                     arrFilterExpensceModal.isNotEmpty
                         ? CustomListView()
-                        : Text("Expances is empty"),
+                        : const Text("Expances is empty"),
                   ],
                 ),
               ),
@@ -121,10 +132,10 @@ class _Home_PageState extends State<Home_Page> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => AddTaksPage(),
+                builder: (context) => const AddTaksPage(),
               ));
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
       // floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
@@ -133,7 +144,7 @@ class _Home_PageState extends State<Home_Page> {
   Widget CustomListView() {
     return ListView.builder(
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       reverse: true,
       itemCount: arrFilterExpensceModal.length,
       itemBuilder: (_, index) {
@@ -163,7 +174,7 @@ class _Home_PageState extends State<Home_Page> {
             ListView.builder(
                 shrinkWrap: true,
                 reverse: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: arrFilterExpensceModal[index].arrExpenseModal.length,
                 itemBuilder: (_, childIndex) {
                   var arreach =
@@ -181,7 +192,7 @@ class _Home_PageState extends State<Home_Page> {
                     trailing: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [Text("\$ ${arreach.exp_amt}"), Text("Debit")],
+                      children: [Text("\$ ${arreach.exp_amt}"), const Text("Debit")],
                     ),
                   );
                 })
@@ -191,7 +202,7 @@ class _Home_PageState extends State<Home_Page> {
     );
   }
 
-  /// data wish transaction
+  /// date wish transaction
   void getDateWishTransaction(List<ExpenseModal> data) {
     arrFilterExpensceModal.clear();
     List<String> arrUniqueDate = [];

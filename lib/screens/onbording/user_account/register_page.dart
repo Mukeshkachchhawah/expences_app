@@ -290,17 +290,17 @@ class _Register_PageState extends State<Register_Page> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Social_Midia_Button(
+        SocialMidiaButton(
             images:
                 "https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png",
             scale_value: 40,
             textValue: "google"),
-        Social_Midia_Button(
+        SocialMidiaButton(
             images:
                 "https://1000logos.net/wp-content/uploads/2021/04/Facebook-logo.png",
             scale_value: 20,
             textValue: "Facbook"),
-        Social_Midia_Button(
+        SocialMidiaButton(
             images: "https://cdn-icons-png.flaticon.com/512/2/2235.png",
             scale_value: 20,
             textValue: "Mac")
