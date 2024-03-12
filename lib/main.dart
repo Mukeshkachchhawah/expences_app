@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       builder: (context, child) {
         return MaterialApp(
-          title: 'Expense App',
+          title: 'Expense App dfsdfh kdh',
           debugShowCheckedModeBanner: false,
 
           /// value ko listen karna hain es liye wathch kar rahe hai
