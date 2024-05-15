@@ -2,18 +2,18 @@ import 'package:expense_app/expense_bloc/expense_bloc.dart';
 import 'package:expense_app/modal/expense_modal.dart';
 import 'package:expense_app/ui_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
 import '../../../constants/constants.dart';
 
-class AddTaksPage extends StatefulWidget {
-  const AddTaksPage({super.key});
+class AddTaskPage extends StatefulWidget {
+  const AddTaskPage({super.key});
 
   @override
-  State<AddTaksPage> createState() => _AddTaksPageState();
+  State<AddTaskPage> createState() => SleetedCard();
 }
 
-class _AddTaksPageState extends State<AddTaksPage> {
+class SleetedCard extends State<AddTaskPage> {
   var titleController = TextEditingController();
   var descController = TextEditingController();
   var amountController = TextEditingController();
@@ -21,17 +21,17 @@ class _AddTaksPageState extends State<AddTaksPage> {
   // var SeletededCard = -1;
 
   List<String> arrTransactionCardTypes = ["Debit", "Credit"];
-  String seletRrasactionCardtypes = "Debit";
+  String selectTransactionCardtypes = "Debit";
 
-  var selectcat = -1;
+  var selectCat = -1;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        iconTheme: IconThemeData(color: Colors.black),
-        title: Text(
+        iconTheme: const IconThemeData(color: Colors.black),
+        title: const Text(
           "New Transaction",
           style: TextStyle(color: Colors.black),
         ),
@@ -45,41 +45,39 @@ class _AddTaksPageState extends State<AddTaksPage> {
             TextField(
               controller: titleController,
               decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.edit),
+                  prefixIcon: const Icon(Icons.edit),
                   // suffixIcon: Icon(Icons.memory),
                   hintText: "title",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20))),
             ),
-            SizedBox(
-              height: 20,
-            ),
+            hSpacer(),
             TextField(
               controller: descController,
 
               /// minLines: 1,
               /// maxLines: 3,
               decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.edit),
+                  prefixIcon: const Icon(Icons.edit),
                   // suffixIcon: Icon(Icons.memory),
                   hintText: "Desc.....",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20))),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             TextField(
               controller: amountController,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                  hintText: "Ammount",
-                  prefixIcon: Icon(Icons.monetization_on_sharp),
+                  hintText: "Amount",
+                  prefixIcon: const Icon(Icons.monetization_on_sharp),
                   //suffixIcon: Icon(Icons.memory),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20))),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             SizedBox(
@@ -90,7 +88,7 @@ class _AddTaksPageState extends State<AddTaksPage> {
                         ElevatedButton.styleFrom(backgroundColor: Colors.grey),
                     onPressed: () {
                       showModalBottomSheet(
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(20),
                                 topRight: Radius.circular(20))),
@@ -98,16 +96,16 @@ class _AddTaksPageState extends State<AddTaksPage> {
                         builder: (context) {
                           return GridView.builder(
                             gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
+                                const SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 4),
-                            itemCount: AppConstants.catagery.length,
+                            itemCount: AppConstants.category.length,
                             itemBuilder: (context, index) {
                               return Padding(
                                 padding: const EdgeInsets.only(top: 40),
                                 child: InkWell(
                                   onTap: () {
-                                    /// selet image show bottom sheet
-                                    selectcat = index;
+                                    /// select image show bottom sheet
+                                    selectCat = index;
                                     setState(() {});
                                     Navigator.pop(context);
                                   },
@@ -116,10 +114,10 @@ class _AddTaksPageState extends State<AddTaksPage> {
                                       CircleAvatar(
                                         /// drop down image and text show
                                         child: Image.asset(AppConstants
-                                            .catagery[index]['image']),
+                                            .category[index]['image']),
                                       ),
                                       Text(
-                                          "${AppConstants.catagery[index]['name']}"),
+                                          "${AppConstants.category[index]['name']}"),
                                     ],
                                   ),
                                 ),
@@ -130,23 +128,23 @@ class _AddTaksPageState extends State<AddTaksPage> {
                       );
                     },
                     //logic in chose category
-                    /// select category >=0 hain to add image or name
-                    child: selectcat >= 0
+                    /// select category >=0 hai to add image or name
+                    child: selectCat >= 0
                         ? Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                AppConstants.catagery[selectcat]['image'],
+                                AppConstants.category[selectCat]['image'],
                                 width: 30,
                               ),
-                              wSpacher(width: 10.0),
-                              Text(AppConstants.catagery[selectcat]['name'])
+                              wSpacer(width: 10.0),
+                              Text(AppConstants.category[selectCat]['name'])
                             ],
                           )
-                        : Text("Chose Category"))),
+                        : const Text("Chose Category"))),
             DropdownButton(
-              /// difalut value in dropdown value
-              value: seletRrasactionCardtypes,
+              /// default value in dropdown value
+              value: selectTransactionCardtypes,
               items: arrTransactionCardTypes.map((e) {
                 return DropdownMenuItem(
                   child: Text(e),
@@ -154,11 +152,11 @@ class _AddTaksPageState extends State<AddTaksPage> {
                 );
               }).toList(),
               onChanged: (value) {
-                seletRrasactionCardtypes = value!;
+                selectTransactionCardtypes = value!;
                 setState(() {});
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             SizedBox(
@@ -175,13 +173,13 @@ class _AddTaksPageState extends State<AddTaksPage> {
                                   int.parse(amountController.text.toString()),
                               exp_bal: 0,
                               exp_type:
-                                  seletRrasactionCardtypes == "Debit" ? 0 : 1,
+                                  selectTransactionCardtypes == "Debit" ? 0 : 1,
                               cat_id: int.parse(
-                                  AppConstants.catagery[selectcat]['id']),
+                                  AppConstants.category[selectCat]['id']),
                               date: DateTime.now().toString())));
                       Navigator.pop(context);
                     },
-                    child: Text('Add Transaction')))
+                    child: const Text('Add Transaction')))
           ],
         ),
       ),

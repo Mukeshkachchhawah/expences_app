@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-class SocialMidiaButton extends StatelessWidget {
+// ignore: must_be_immutable
+class SocialMediaButton extends StatelessWidget {
   String images;
-  double scale_value;
+  double scaleValue;
   String textValue;
-  SocialMidiaButton({required this.images, required this.scale_value, required this.textValue});
+  SocialMediaButton({super.key, required this.images, required this.scaleValue, required this.textValue});
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -16,7 +17,7 @@ class SocialMidiaButton extends StatelessWidget {
           border: Border.all(color: Colors.black),
          // image: DecorationImage(image: NetworkImage(images), scale: 50 ),
          ),
-          child:   Image(image: NetworkImage(images, scale: scale_value)),
+          child:   Image(image: NetworkImage(images, scale: scaleValue)),
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:expense_app/expense_bloc/expense_bloc.dart';
-import 'package:expense_app/screens/home/home_page.dart';
 import 'package:expense_app/screens/onbording/splace_screen.dart';
 import 'package:expense_app/theme_provider/theme_provider.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +43,7 @@ class MyApp extends StatelessWidget {
           //     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           //         selectedItemColor: Colors.blueAccent)),
           //  home: Home_Page(),
-          home: const Splace_Screen(),
+          home: const SplashScreenView(),
         );
         // ffffff
         // f8f9fa

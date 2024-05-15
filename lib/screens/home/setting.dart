@@ -21,10 +21,10 @@ class _GrafState extends State<Setting> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<ExpenseBloc>().add(FatchAllExpenseEvent());
+    context.read<ExpenseBloc>().add(FetchAllExpenseEvent());
   }
 
-  final List<ChartDataYear> Years = [
+  final List<ChartDataYear> years = [
     ChartDataYear(DateTime(2015), 35),
     ChartDataYear(DateTime(2016), 28),
     ChartDataYear(DateTime(2017), 34),
@@ -42,13 +42,13 @@ class _GrafState extends State<Setting> {
   Widget build(BuildContext context) {
     return Scaffold(body: BlocBuilder<ExpenseBloc, ExpenseState>(
       builder: (_, state) {
-        if (state is ExpenseLodingState) {
-          return Center(
+        if (state is ExpenseLoadingState) {
+          return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (state is ExpenseErroState) {
+        } else if (state is ExpenseErrorState) {
           return Center(
-            child: Text("${state.errorMsg}"),
+            child: Text(state.errorMsg),
           );
         } else if (state is ExpenseLoadedState) {
           var arrData = state.arrExpenses.reversed.toList();
@@ -58,7 +58,7 @@ class _GrafState extends State<Setting> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Column(
@@ -67,11 +67,11 @@ class _GrafState extends State<Setting> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text("\$",
+                              const Text("\$",
                                   style: TextStyle(
                                       fontSize: 30, color: Colors.black54)),
-                              wSpacher(width: 2.0),
-                              Text("803.92",
+                              wSpacer(width: 2.0),
+                              const Text("803.92",
                                   style: TextStyle(
                                       fontSize: 30,
                                       fontWeight: FontWeight.w500)),
@@ -79,12 +79,12 @@ class _GrafState extends State<Setting> {
                           ),
                           Row(
                             children: [
-                              Text(
+                              const Text(
                                 "Total spent this month",
                                 style: TextStyle(fontSize: 15),
                               ),
-                              wSpacher(width: 10.0),
-                              CircleAvatar(
+                              wSpacer(width: 10.0),
+                              const CircleAvatar(
                                 backgroundColor:
                                     Color.fromARGB(255, 235, 167, 162),
                                 radius: 10,
@@ -94,8 +94,8 @@ class _GrafState extends State<Setting> {
                                   color: Colors.red,
                                 ),
                               ),
-                              wSpacher(width: 5.0),
-                              Text(
+                              wSpacer(width: 5.0),
+                              const Text(
                                 "1%",
                                 style: TextStyle(
                                     color: Colors.red,
@@ -110,18 +110,18 @@ class _GrafState extends State<Setting> {
                         primaryXAxis: DateTimeAxis(),
                         series: <ChartSeries>[
                           LineSeries<ChartDataYear, DateTime>(
-                            dataSource: Years,
+                            dataSource: years,
                             xValueMapper: (datum, index) => datum.year,
                             yValueMapper: (datum, index) => datum.sales,
                           )
                         ],
                       ),
-                      hSpacher(mHight: 20.0),
+                      hSpacer(mHight: 20.0),
                       Row(
                         children: [
-                          buttom("Month"),
-                          wSpacher(width: 10.0),
-                          buttom("Year")
+                          bottom("Month"),
+                          wSpacer(width: 10.0),
+                          bottom("Year")
                         ],
                       ),
                       SizedBox(
@@ -141,7 +141,7 @@ class _GrafState extends State<Setting> {
                                   ),
                                   ListView.builder(
                                       shrinkWrap: true,
-                                      physics: NeverScrollableScrollPhysics(),
+                                      physics: const NeverScrollableScrollPhysics(),
                                       itemCount: arrFilterYearExpense[index]
                                           .arrExpenseModal
                                           .length,
@@ -163,8 +163,8 @@ class _GrafState extends State<Setting> {
                     ],
                   ),
                 )
-              : Center(
-                  child: Text("No Expenser this year"),
+              : const Center(
+                  child: Text("No Expense this year"),
                 );
         }
         return Container();
@@ -172,7 +172,7 @@ class _GrafState extends State<Setting> {
     ));
   }
 
-  buttom(String text) {
+  bottom(String text) {
     return Container(
       height: 50,
       width: 100,

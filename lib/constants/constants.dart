@@ -70,7 +70,7 @@ class Constants {
 class AppConstants {
   static final app_name = "Expenser";
 
-  static const List<Map<String, dynamic>> catagery = [
+  static const List<Map<String, dynamic>> category = [
     {"id": "1", "name": "car", "image": ImageConstants.carimg},
     {"id": "2", "name": "coka", "image": ImageConstants.cokaimg},
     {"id": "3", "name": "flayting", "image": ImageConstants.flaytimg},

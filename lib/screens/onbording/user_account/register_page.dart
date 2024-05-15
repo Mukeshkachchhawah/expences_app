@@ -7,19 +7,18 @@ import '../../../constructor/social_media.dart';
 import '../../../database/db_helper.dart';
 import '../../../modal/user_modal.dart';
 
-class Register_Page extends StatefulWidget {
-  const Register_Page({super.key});
+class RegisterView extends StatefulWidget {
+  const RegisterView({super.key});
 
   @override
-  State<Register_Page> createState() => _Register_PageState();
+  State<RegisterView> createState() => _RegisterViewState();
 }
 
-class _Register_PageState extends State<Register_Page> {
+class _RegisterViewState extends State<RegisterView> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
-  var orientation;
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context);
@@ -43,12 +42,12 @@ class _Register_PageState extends State<Register_Page> {
               "Create your account",
               style: loginTop1(),
             ),
-            hSpacher(),
-            Text(
+            hSpacer(),
+            const Text(
               "Let's get Started with your 30 days free trial",
               style: TextStyle(fontSize: 18),
             ),
-            hSpacher(),
+            hSpacer(),
 
             /// Enter Email Fomr Fild
             Form(
@@ -72,7 +71,7 @@ class _Register_PageState extends State<Register_Page> {
                       onchaged: (value) {
                         formKey.currentState?.validate();
                       }),
-                  hSpacher(),
+                  hSpacer(),
                   CustomTextFormFilds(
                       "Enter Your Password", BorderRadius.circular(10),
                       validator: (value) {
@@ -81,7 +80,7 @@ class _Register_PageState extends State<Register_Page> {
                     }
                     return null;
                   }),
-                  hSpacher(),
+                  hSpacer(),
                   CustomTextFormFilds(
                       "Confirm Your Password", BorderRadius.circular(10),
                       validator: (value) {
@@ -90,19 +89,19 @@ class _Register_PageState extends State<Register_Page> {
                     }
                     return null;
                   }),
-                  hSpacher(),
+                  hSpacer(),
                 ],
               ),
             ),
-            hSpacher(),
-            Text(
+            hSpacer(),
+            const Text(
               "I Agree to all Teem, Privacy Policy and Fees",
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                   color: Colors.white),
             ),
-            hSpacher(),
+            hSpacer(),
             InkWell(
               onTap: () async {
                 if (formKey.currentState!.validate()) {
@@ -115,7 +114,7 @@ class _Register_PageState extends State<Register_Page> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
+                          builder: (context) => LoginScreenView(),
                         ));
                   } else {
                     // show error
@@ -126,9 +125,9 @@ class _Register_PageState extends State<Register_Page> {
                 height: 50,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 4, 19, 58),
+                    color: const Color.fromARGB(255, 4, 19, 58),
                     borderRadius: BorderRadius.circular(10)),
-                child: Center(
+                child: const Center(
                   child: Text(
                     "Login",
                     style: TextStyle(
@@ -139,31 +138,31 @@ class _Register_PageState extends State<Register_Page> {
                 ),
               ),
             ),
-            hSpacher(mHight: 20.0),
+            hSpacer(mHight: 20.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Already have an account?",
+                const Text("Already have an account?",
                     style: TextStyle(
                       fontSize: 16,
                     )),
-                wSpacher(),
+                wSpacer(),
                 InkWell(
                     onTap: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => LoginScreen(),
+                            builder: (context) => LoginScreenView(),
                           ));
                     },
-                    child: Text("Log in",
+                    child: const Text("Log in",
                         style: TextStyle(
                             fontSize: 16,
                             color: Colors.red,
                             fontWeight: FontWeight.bold)))
               ],
             ),
-            hSpacher(),
+            hSpacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -173,8 +172,8 @@ class _Register_PageState extends State<Register_Page> {
                   color: Colors.black,
                 ),
                 // wSpacher(),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10, right: 10),
+                const Padding(
+                  padding: EdgeInsets.only(left: 10, right: 10),
                   child: Text(
                     "or",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -188,7 +187,7 @@ class _Register_PageState extends State<Register_Page> {
                 ),
               ],
             ),
-            hSpacher(mHight: 20.0),
+            hSpacer(mHight: 20.0),
 
             /// Social Button
             SocialMedia()
@@ -290,19 +289,19 @@ class _Register_PageState extends State<Register_Page> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        SocialMidiaButton(
+        SocialMediaButton(
             images:
                 "https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png",
-            scale_value: 40,
+            scaleValue: 40,
             textValue: "google"),
-        SocialMidiaButton(
+        SocialMediaButton(
             images:
                 "https://1000logos.net/wp-content/uploads/2021/04/Facebook-logo.png",
-            scale_value: 20,
+            scaleValue: 20,
             textValue: "Facbook"),
-        SocialMidiaButton(
+        SocialMediaButton(
             images: "https://cdn-icons-png.flaticon.com/512/2/2235.png",
-            scale_value: 20,
+            scaleValue: 20,
             textValue: "Mac")
       ],
     );

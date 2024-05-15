@@ -9,33 +9,31 @@ import 'package:expense_app/ui_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../constants/constants.dart';
 
-class Home_Page extends StatefulWidget {
-  const Home_Page({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<Home_Page> createState() => _Home_PageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _Home_PageState extends State<Home_Page> {
-  /// arrFilterExpense ko global kar dete hain jise puri ui me excce kar sakte hain
+class _HomePageState extends State<HomePage> {
+  /// arrFilterExpense ko global kar date hain jise puri ui me excce kar sakte hain
   List<FilterExpensceModal> arrFilterExpensceModal = [];
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<ExpenseBloc>().add(FatchAllExpenseEvent());
+    context.read<ExpenseBloc>().add(FetchAllExpenseEvent());
   }
 
   @override
   Widget build(BuildContext context) {
-    var media = MediaQuery.of(context);
+    MediaQuery.of(context);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Expenso"),
-      
+        title: const Text("Expense"),
         actions: [
           // handle dart theme and light theme
           Switch(
@@ -50,19 +48,25 @@ class _Home_PageState extends State<Home_Page> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
-            }, child: const Text("Log Out"))
+            TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreenView(),
+                      ));
+                },
+                child: const Text("Log Out"))
           ],
         ),
       ),
       body: BlocBuilder<ExpenseBloc, ExpenseState>(
         builder: (context, state) {
-          if (state is ExpenseLodingState) {
+          if (state is ExpenseLoadingState) {
             return const Center(
               child: CircularProgressIndicator(),
             );
-          } else if (state is ExpenseErroState) {
+          } else if (state is ExpenseErrorState) {
             return Center(child: Text(state.errorMsg));
           } else if (state is ExpenseLoadedState) {
             var arrData = state.arrExpenses;
@@ -73,7 +77,7 @@ class _Home_PageState extends State<Home_Page> {
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                 child: Column(
                   children: [
-                    hSpacher(),
+                    hSpacer(),
                     SizedBox(
                       height: 150,
                       width: double.infinity,
@@ -93,7 +97,7 @@ class _Home_PageState extends State<Home_Page> {
                                   const Text("\$",
                                       style: TextStyle(
                                           fontSize: 30, color: Colors.black54)),
-                                  wSpacher(width: 2.0),
+                                  wSpacer(width: 2.0),
                                   const Text(
                                     "000",
                                     style: TextStyle(
@@ -113,10 +117,10 @@ class _Home_PageState extends State<Home_Page> {
                         ),
                       ),
                     ),
-                    hSpacher(),
+                    hSpacer(),
                     arrFilterExpensceModal.isNotEmpty
-                        ? CustomListView()
-                        : const Text("Expances is empty"),
+                        ? customListView()
+                        : const Text("Expanses is empty"),
                   ],
                 ),
               ),
@@ -132,7 +136,7 @@ class _Home_PageState extends State<Home_Page> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const AddTaksPage(),
+                builder: (context) => const AddTaskPage(),
               ));
         },
         child: const Icon(Icons.add),
@@ -141,7 +145,7 @@ class _Home_PageState extends State<Home_Page> {
     );
   }
 
-  Widget CustomListView() {
+  Widget customListView() {
     return ListView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -166,7 +170,7 @@ class _Home_PageState extends State<Home_Page> {
                 ],
               ),
             ),
-            hSpacher(),
+            hSpacer(),
             // Divider(
             //   color: Colors.black,
             //   height: 1,
@@ -180,7 +184,7 @@ class _Home_PageState extends State<Home_Page> {
                   var arreach =
                       arrFilterExpensceModal[index].arrExpenseModal[childIndex];
 
-                  var image = AppConstants.catagery.firstWhere((element) =>
+                  var image = AppConstants.category.firstWhere((element) =>
                       element['id'] == arreach.cat_id.toString())['image'];
 
                   return ListTile(
@@ -192,7 +196,10 @@ class _Home_PageState extends State<Home_Page> {
                     trailing: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [Text("\$ ${arreach.exp_amt}"), const Text("Debit")],
+                      children: [
+                        Text("\$ ${arreach.exp_amt}"),
+                        const Text("Debit")
+                      ],
                     ),
                   );
                 })
@@ -206,8 +213,8 @@ class _Home_PageState extends State<Home_Page> {
   void getDateWishTransaction(List<ExpenseModal> data) {
     arrFilterExpensceModal.clear();
     List<String> arrUniqueDate = [];
-    for (ExpenseModal eachExpensetrans in data) {
-      var date = DateTime.parse(eachExpensetrans.date);
+    for (ExpenseModal eachExpenseTrans in data) {
+      var date = DateTime.parse(eachExpenseTrans.date);
       var eachDate =
           "${date.day}-${date.month.toString().length < 2 ? "0${date.month}" : date.month}-${date.year}";
       print(eachDate);
@@ -217,25 +224,25 @@ class _Home_PageState extends State<Home_Page> {
     }
     print(arrUniqueDate);
     for (String eachDate in arrUniqueDate) {
-      List<ExpenseModal> eachDateTranstion = [];
+      List<ExpenseModal> eachDateTransition = [];
       num amount = 0;
-      for (ExpenseModal eachtrans in data) {
-        var date = DateTime.parse(eachtrans.date);
+      for (ExpenseModal eachTransition in data) {
+        var date = DateTime.parse(eachTransition.date);
         var mDate =
             "${date.day}-${date.month.toString().length < 2 ? "0${date.month}" : date.month}-${date.year}";
         if (eachDate == mDate) {
-          eachDateTranstion.add(eachtrans);
-          if (eachtrans.exp_type == 0) {
-            amount -= eachtrans.exp_amt;
+          eachDateTransition.add(eachTransition);
+          if (eachTransition.exp_type == 0) {
+            amount -= eachTransition.exp_amt;
           } else {
-            amount += eachtrans.exp_amt;
+            amount += eachTransition.exp_amt;
           }
         }
       }
       arrFilterExpensceModal.add(FilterExpensceModal(
           date: eachDate,
           amount: amount.toString(),
-          arrExpenseModal: eachDateTranstion));
+          arrExpenseModal: eachDateTransition));
     }
   }
 }

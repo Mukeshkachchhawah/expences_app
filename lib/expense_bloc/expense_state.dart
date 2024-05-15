@@ -5,8 +5,9 @@ abstract class ExpenseState {}
 
 class ExpenseInitialState extends ExpenseState {}
 
-class ExpenseLodingState extends ExpenseState {}
+class ExpenseLoadingState extends ExpenseState {}
 
+// ignore: must_be_immutable
 class ExpenseLoadedState extends ExpenseState {
   // Check Database folder
 //// check getAllData fache ListTpes
@@ -14,7 +15,8 @@ class ExpenseLoadedState extends ExpenseState {
   ExpenseLoadedState({required this.arrExpenses});
 }
 
-class ExpenseErroState extends ExpenseState {
+// ignore: must_be_immutable
+class ExpenseErrorState extends ExpenseState {
   String errorMsg;
-  ExpenseErroState({required this.errorMsg});
+  ExpenseErrorState({required this.errorMsg});
 }

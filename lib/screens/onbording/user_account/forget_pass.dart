@@ -5,14 +5,14 @@ import 'resend_password.dart';
 
 
 
-class Forget_Pass extends StatefulWidget {
-  const Forget_Pass({super.key});
+class ForgetPasswordView extends StatefulWidget {
+  const ForgetPasswordView({super.key});
 
   @override
-  State<Forget_Pass> createState() => _Forget_PassState();
+  State<ForgetPasswordView> createState() => _ForgetPasswordViewState();
 }
 
-class _Forget_PassState extends State<Forget_Pass> {
+class _ForgetPasswordViewState extends State<ForgetPasswordView> {
   var formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
 
@@ -35,19 +35,19 @@ class _Forget_PassState extends State<Forget_Pass> {
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      child: Icon(Icons.arrow_back)),
-                  SizedBox(
+                      child: const Icon(Icons.arrow_back)),
+                  const SizedBox(
                     height: 20,
                   ),
-                  Text(
+                  const Text(
                     'Forget Password',
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  Text("Enter Your Email Here"),
-                  SizedBox(
+                  const Text("Enter Your Email Here"),
+                  const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
@@ -69,12 +69,13 @@ class _Forget_PassState extends State<Forget_Pass> {
                   InkWell(
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
+                        // ignore: unused_local_variable
                         var check = await AppDatabase()
                             .forgetPassword(emailController.text);
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Resend_Password(
+                              builder: (context) => ResendPasswordView(
                                 email: emailController.text,
                               ),
                             ));
@@ -87,8 +88,8 @@ class _Forget_PassState extends State<Forget_Pass> {
                       width: double.infinity,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Color.fromARGB(255, 7, 7, 71)),
-                      child: Center(
+                          color: const Color.fromARGB(255, 7, 7, 71)),
+                      child: const Center(
                         child: Text(
                           "Conform",
                           style: TextStyle(color: Colors.white, fontSize: 20),

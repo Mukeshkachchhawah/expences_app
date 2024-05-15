@@ -244,12 +244,14 @@ import '../bottom_bar_page.dart';
 import 'forget_pass.dart';
 import '../splace_screen.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreenView extends StatefulWidget {
+  const LoginScreenView({super.key});
+
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<LoginScreenView> createState() => _LoginScreenViewState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenViewState extends State<LoginScreenView> {
   var portraitKey = GlobalKey<FormState>();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
@@ -257,7 +259,7 @@ class _LoginScreenState extends State<LoginScreen> {
   var orientation;
   @override
   Widget build(BuildContext context) {
-    var media = MediaQuery.of(context);
+    // var media = MediaQuery.of(context);
 
     return Scaffold(
         backgroundColor: Colors.white,
@@ -279,12 +281,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             width: 200),
                       ),
                       Text("Log in to your account", style: loginTop1()),
-                      hSpacher(),
-                      Text(
+                      hSpacer(),
+                      const Text(
                         "Please enter your details to acces your account",
                         style: TextStyle(fontSize: 18),
                       ),
-                      hSpacher(),
+                      hSpacer(),
                       SizedBox(
                         width: double.infinity,
                         child: TextFormField(
@@ -304,7 +306,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                         ),
                       ),
-                      hSpacher(),
+                      hSpacer(),
                       SizedBox(
                         width: double.infinity,
                         child: TextFormField(
@@ -323,7 +325,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                         ),
                       ),
-                      hSpacher(),
+                      hSpacer(),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
@@ -334,10 +336,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => Forget_Pass(),
+                                      builder: (context) =>
+                                          const ForgetPasswordView(),
                                     ));
                               },
-                              child: Text(
+                              child: const Text(
                                 "Forget Password?",
                                 style: TextStyle(
                                     color: Color(0xFFFF0000),
@@ -347,7 +350,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                       ),
-                      hSpacher(),
+                      hSpacer(),
                       InkWell(
                         onTap: () async {
                           if (portraitKey.currentState!.validate()) {
@@ -358,11 +361,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
                             if (check) {
                               var pref = await SharedPreferences.getInstance();
-                              pref.setBool(SplaceScreenState.LOGIN_KEY, true);
+                              pref.setBool(SplashScreenState.LOGIN_KEY, true);
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => BottomBarPages(),
+                                    builder: (context) =>
+                                        const BottomBarPages(),
                                   ));
                             } else {
                               // show error
@@ -373,9 +377,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           height: 50,
                           width: 380,
                           decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 4, 19, 58),
+                              color: const Color.fromARGB(255, 4, 19, 58),
                               borderRadius: BorderRadius.circular(10)),
-                          child: Center(
+                          child: const Center(
                             child: Text(
                               "Login",
                               style: TextStyle(
@@ -386,7 +390,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ),
-                      hSpacher(mHight: 20.0),
+                      hSpacer(mHight: 20.0),
                       Padding(
                         padding: const EdgeInsets.all(5),
                         child: Row(
@@ -396,12 +400,12 @@ class _LoginScreenState extends State<LoginScreen> {
                               color: Colors.black,
                               width: 150,
                             ),
-                            wSpacher(),
-                            Text(
+                            wSpacer(),
+                            const Text(
                               "Or",
                               style: TextStyle(fontSize: 20),
                             ),
-                            wSpacher(),
+                            wSpacer(),
                             Container(
                               height: 1,
                               color: Colors.black,
@@ -410,24 +414,24 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                       ),
-                      hSpacher(),
+                      hSpacer(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          SocialMidiaButton(
+                          SocialMediaButton(
                               images:
                                   "https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png",
-                              scale_value: 40,
+                              scaleValue: 40,
                               textValue: "google"),
-                          SocialMidiaButton(
+                          SocialMediaButton(
                               images:
                                   "https://1000logos.net/wp-content/uploads/2021/04/Facebook-logo.png",
-                              scale_value: 20,
+                              scaleValue: 20,
                               textValue: "Facbook"),
-                          SocialMidiaButton(
+                          SocialMediaButton(
                               images:
                                   "https://cdn-icons-png.flaticon.com/512/2/2235.png",
-                              scale_value: 20,
+                              scaleValue: 20,
                               textValue: "Mac")
                         ],
                       )

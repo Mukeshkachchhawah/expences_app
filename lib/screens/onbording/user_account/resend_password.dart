@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 
 import '../../../database/db_helper.dart';
@@ -5,15 +7,15 @@ import 'login_page.dart';
 
 
 
-class Resend_Password extends StatefulWidget {
+class ResendPasswordView extends StatefulWidget {
   String email;
-  Resend_Password({required this.email, super.key});
+  ResendPasswordView({required this.email, super.key});
 
   @override
-  State<Resend_Password> createState() => _Resend_PasswordState();
+  State<ResendPasswordView> createState() => _ResendPasswordViewState();
 }
 
-class _Resend_PasswordState extends State<Resend_Password> {
+class _ResendPasswordViewState extends State<ResendPasswordView> {
    var formKey = GlobalKey<FormState>();
    TextEditingController newPasswordController = TextEditingController();
 
@@ -36,19 +38,19 @@ class _Resend_PasswordState extends State<Resend_Password> {
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      child: Icon(Icons.arrow_back)),
-                  SizedBox(
+                      child: const Icon(Icons.arrow_back)),
+                  const SizedBox(
                     height: 20,
                   ),
-                  Text(
+                  const Text(
                     'Reset Your Password',
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  Text("Enter Your Password Here"),
-                  SizedBox(
+                  const Text("Enter Your Password Here"),
+                  const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
@@ -58,11 +60,12 @@ class _Resend_PasswordState extends State<Resend_Password> {
                             borderRadius: BorderRadius.circular(15))),
                             validator: (value) {
                               if(value=="" || value!.length<5){
-                                return "Enter Your New Possword";
+                                return "Enter Your New Password";
                               }
+                              return null;
                             },
                   ),
-                   SizedBox(
+                   const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
@@ -72,8 +75,9 @@ class _Resend_PasswordState extends State<Resend_Password> {
                             borderRadius: BorderRadius.circular(15))),
                            validator: (value) {
                               if(value=="" || value!.length<5){
-                                return "conform Your New Possword";
+                                return "conform Your New Password";
                               }
+                              return null;
                             }
                   )
                 ],
@@ -85,20 +89,21 @@ class _Resend_PasswordState extends State<Resend_Password> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => LoginScreen()));
+                                builder: (context) => LoginScreenView()));
                       },
-                      child: Text(
+                      child: const Text(
                         "Go Login Page",
                         style: TextStyle(fontSize: 16),
                       )),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   InkWell(
                     onTap: ()async {
                       if(formKey.currentState!.validate()){
+                        // ignore: unused_local_variable
                         var check = await AppDatabase().resetPassword(newPasswordController.text, widget.email);
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreenView(),));
                       }
                       else{
                         // errow show
@@ -109,8 +114,8 @@ class _Resend_PasswordState extends State<Resend_Password> {
                       width: double.infinity,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Color.fromARGB(255, 7, 7, 71)),
-                      child: Center(
+                          color: const Color.fromARGB(255, 7, 7, 71)),
+                      child: const Center(
                         child: Text(
                           "Conform",
                           style: TextStyle(color: Colors.white, fontSize: 20),

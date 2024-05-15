@@ -9,20 +9,20 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../expense_bloc/expense_bloc.dart';
 
-class Expense_Month extends StatefulWidget {
-  const Expense_Month({super.key});
+class ExpenseMonth extends StatefulWidget {
+  const ExpenseMonth({super.key});
 
   @override
-  State<Expense_Month> createState() => _Expense_MonthState();
+  State<ExpenseMonth> createState() => _ExpenseMonthState();
 }
 
-class _Expense_MonthState extends State<Expense_Month> {
+class _ExpenseMonthState extends State<ExpenseMonth> {
   List<FilterExpensceModalMonthWise> arrFilterMonthExpense = [];
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<ExpenseBloc>().add(FatchAllExpenseEvent());
+    context.read<ExpenseBloc>().add(FetchAllExpenseEvent());
   }
 
   List<ChartData> data = [
@@ -38,13 +38,13 @@ class _Expense_MonthState extends State<Expense_Month> {
     return Scaffold(
       body: BlocBuilder<ExpenseBloc, ExpenseState>(
         builder: (_, state) {
-          if (state is ExpenseLodingState) {
-            return Center(
+          if (state is ExpenseLoadingState) {
+            return const Center(
               child: CircularProgressIndicator(),
             );
-          } else if (state is ExpenseErroState) {
+          } else if (state is ExpenseErrorState) {
             return Center(
-              child: Text("${state.errorMsg}"),
+              child: Text(state.errorMsg),
             );
           } else if (state is ExpenseLoadedState) {
             var arrData = state.arrExpenses.reversed.toList();
@@ -55,8 +55,8 @@ class _Expense_MonthState extends State<Expense_Month> {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 330, top: 30),
+                          const Padding(
+                            padding: EdgeInsets.only(left: 330, top: 30),
                             child: CircleAvatar(
                               radius: 15,
                               backgroundColor: Colors.black,
@@ -65,7 +65,7 @@ class _Expense_MonthState extends State<Expense_Month> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Column(
@@ -74,11 +74,11 @@ class _Expense_MonthState extends State<Expense_Month> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Text("\$",
+                                  const Text("\$",
                                       style: TextStyle(
                                           fontSize: 30, color: Colors.black54)),
-                                  wSpacher(width: 2.0),
-                                  Text("295.95",
+                                  wSpacer(width: 2.0),
+                                  const Text("295.95",
                                       style: TextStyle(
                                           fontSize: 30,
                                           fontWeight: FontWeight.w500)),
@@ -86,12 +86,12 @@ class _Expense_MonthState extends State<Expense_Month> {
                               ),
                               Row(
                                 children: [
-                                  Text(
+                                  const Text(
                                     "Total spent this week",
                                     style: TextStyle(fontSize: 15),
                                   ),
-                                  wSpacher(width: 10.0),
-                                  CircleAvatar(
+                                  wSpacer(width: 10.0),
+                                  const CircleAvatar(
                                     backgroundColor:
                                         Color.fromARGB(255, 183, 233, 184),
                                     radius: 10,
@@ -101,8 +101,8 @@ class _Expense_MonthState extends State<Expense_Month> {
                                       color: Colors.green,
                                     ),
                                   ),
-                                  wSpacher(width: 5.0),
-                                  Text(
+                                  wSpacer(width: 5.0),
+                                  const Text(
                                     "13%",
                                     style: TextStyle(
                                         color: Colors.green,
@@ -113,7 +113,7 @@ class _Expense_MonthState extends State<Expense_Month> {
                               ),
                             ],
                           ),
-                          Text('Weekly time chart'),
+                          const Text('Weekly time chart'),
 
                           /// graf package sfCardtesianchart
                           SfCartesianChart(
@@ -124,12 +124,12 @@ class _Expense_MonthState extends State<Expense_Month> {
                                   yValueMapper: (datum, index) => datum.y),
                             ],
                           ),
-                          hSpacher(mHight: 20.0),
+                          hSpacer(mHight: 20.0),
                           Row(
                             children: [
-                              buttom("Week"),
-                              wSpacher(width: 10.0),
-                              buttom("Month")
+                              button("Week"),
+                              wSpacer(width: 10.0),
+                              button("Month")
                             ],
                           ),
 
@@ -153,7 +153,7 @@ class _Expense_MonthState extends State<Expense_Month> {
                                       ListView.builder(
                                           shrinkWrap: true,
                                           physics:
-                                              NeverScrollableScrollPhysics(),
+                                              const NeverScrollableScrollPhysics(),
                                           itemCount:
                                               arrFilterMonthExpense[index]
                                                   .arrExpenseModal
@@ -178,8 +178,8 @@ class _Expense_MonthState extends State<Expense_Month> {
                       ),
                     ),
                   )
-                : Center(
-                    child: Text("No Expenser Addend"),
+                : const Center(
+                    child: Text("No Expense Addend"),
                   );
           }
           return Container();
@@ -190,15 +190,15 @@ class _Expense_MonthState extends State<Expense_Month> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => AddTaksPage(),
+                builder: (context) => const AddTaskPage(),
               ));
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
 
-//// month wish expesn amount
+//// month wish expense amount
   void getMonthWiseTransaction(List<ExpenseModal> data) {
     arrFilterMonthExpense.clear();
     //getUniqueDates

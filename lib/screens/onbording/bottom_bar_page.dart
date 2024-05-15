@@ -12,32 +12,32 @@ class BottomBarPages extends StatefulWidget {
 }
 
 class _BottomBarPagesState extends State<BottomBarPages> {
-  int _seletedindex = 0;
+  int _selectedIndex = 0;
 
   void _onTab(int index) {
     setState(() {
-      _seletedindex = index;
+      _selectedIndex = index;
     });
   }
 
-  List _pages = [
-    Home_Page(),
-    Expense_Month(),
+  final List _pages = [
+    const HomePage(),
+    const ExpenseMonth(),
     // Graf(),
-    Setting()
+    const Setting()
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_seletedindex],
+      body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "home"),
           BottomNavigationBarItem(icon: Icon(Icons.north_east), label: "Month"),
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Year")
         ],
         onTap: _onTab,
-        currentIndex: _seletedindex,
+        currentIndex: _selectedIndex,
       ),
     );
   }

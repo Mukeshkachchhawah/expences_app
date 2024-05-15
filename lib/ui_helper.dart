@@ -2,29 +2,28 @@
 
 import 'package:flutter/material.dart';
 
-import 'constructor/social_media.dart';
 
-class App_Colors {
-  static final Color witheColor = Color(0xffffffffff);
-  static final Color grayColors = Color(0xffF6F6F6);
-  static final Color greenColors = Color(0xff1A1B32);
-  static final Color blackColors = Color(0xff2BA943);
-  static final Color redColors = Color(0xFFFF0000);
+class AppColors {
+  static const Color witheColor = Color(0xffffffff);
+  static const Color grayColors = Color(0xffF6F6F6);
+  static const Color greenColors = Color(0xff1A1B32);
+  static const Color blackColors = Color(0xff2BA943);
+  static const Color redColors = Color(0xFFFF0000);
 }
 
-Widget hSpacher({mHight = 15.0}) {
+Widget hSpacer({mHight = 15.0}) {
   return SizedBox(
     height: mHight,
   );
 }
 
-Widget wSpacher({width = 11.0}) {
+Widget wSpacer({width = 11.0}) {
   return SizedBox(
     width: width,
   );
 }
 
-buttom(String text) {
+button(String text) {
   return Container(
     height: 50,
     width: 100,
@@ -36,28 +35,28 @@ buttom(String text) {
 }
 
 TextStyle loginTop1() {
-  return TextStyle(
+  return const TextStyle(
       fontSize: 30, fontWeight: FontWeight.bold, fontFamily: "Poppins");
 }
 
-TextStyle loginmid2() {
-  return TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
+TextStyle loginMid2() {
+  return const TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
 }
 
 TextStyle textStyles18() {
-  return TextStyle(
+  return const TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.bold,
   );
 }
 
 TextStyle textStyles16() {
-  return TextStyle(
+  return const TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w300,
   );
 }
 
-TextStyle midtextStyles(Color) {
-  return TextStyle(fontSize: 16);
+TextStyle midTextStyles(Color) {
+  return const TextStyle(fontSize: 16);
 }

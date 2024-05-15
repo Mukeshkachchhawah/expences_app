@@ -4,6 +4,7 @@ part of 'expense_bloc.dart';
 class ExpenseEvent {}
 
 /// add expense
+// ignore: must_be_immutable
 class AddExpenseEvent extends ExpenseEvent {
   //  modal file to add ExpenseModal
   ExpenseModal newExpense;
@@ -11,5 +12,5 @@ class AddExpenseEvent extends ExpenseEvent {
   AddExpenseEvent({required this.newExpense});
 }
 
-/// fatchallExpense
-class FatchAllExpenseEvent extends ExpenseEvent {}
+/// fetch allExpense
+class FetchAllExpenseEvent extends ExpenseEvent {}

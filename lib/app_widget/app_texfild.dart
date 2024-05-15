@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
-class App_TextFild extends StatelessWidget {
+// ignore: must_be_immutable
+class AppTextFil extends StatelessWidget {
   String text;
 
-  String lebletext;
+  String labelText;
 
-  App_TextFild({
+  AppTextFil({
     super.key,
     required this.text,
-    required this.lebletext,
+    required this.labelText,
   });
 
   @override
@@ -20,20 +21,22 @@ class App_TextFild extends StatelessWidget {
         children: [
           Text(
             text,
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           TextFormField(
             onTap: () {},
-            validator: (value) {},
+            validator: (value) {
+              return null;
+            },
             decoration: InputDecoration(
-                labelText: lebletext,
+                labelText: labelText,
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10))),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
         ],

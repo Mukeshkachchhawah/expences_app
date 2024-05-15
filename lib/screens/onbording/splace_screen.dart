@@ -9,45 +9,46 @@ import 'bottom_bar_page.dart';
 import 'user_account/login_page.dart';
 import 'user_account/register_page.dart';
 
-class Splace_Screen extends StatefulWidget {
-  const Splace_Screen({super.key});
+class SplashScreenView extends StatefulWidget {
+  const SplashScreenView({super.key});
 
   @override
-  State<Splace_Screen> createState() => SplaceScreenState();
+  State<SplashScreenView> createState() => SplashScreenState();
 }
 
-class SplaceScreenState extends State<Splace_Screen> {
+class SplashScreenState extends State<SplashScreenView> {
+  // ignore: constant_identifier_names
   static const String LOGIN_KEY = "Login Page";
 
   @override
   void initState() {
     super.initState();
 
-    Shared_Preferenc();
+    sharedPreference();
   }
 
-  void Shared_Preferenc() async {
+  void sharedPreference() async {
     var sp = await SharedPreferences.getInstance();
-    var islogin = sp.getBool(LOGIN_KEY);
+    var isLogin = sp.getBool(LOGIN_KEY);
     Timer(const Duration(seconds: 5), () {
-      if (islogin != null) {
-        if (islogin) {
+      if (isLogin != null) {
+        if (isLogin) {
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) => const BottomBarPages()));
         } else {
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => LoginScreen()));
+              context, MaterialPageRoute(builder: (context) => LoginScreenView()));
         }
       } else {
         Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const Register_Page()));
+            MaterialPageRoute(builder: (context) => const RegisterView()));
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    var orientation = MediaQuery.of(context);
+    MediaQuery.of(context);
     return Scaffold(
         // backgroundColor: Color(0xFFFFFF00),
         backgroundColor: Colors.white,

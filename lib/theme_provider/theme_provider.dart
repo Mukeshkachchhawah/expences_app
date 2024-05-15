@@ -8,7 +8,7 @@ class ThemeProvider extends ChangeNotifier {
     return _isDark;
   }
 
-  /// set funtion
+  /// set function
   set themeValue(bool newValue) {
     _isDark = newValue;
     notifyListeners();
