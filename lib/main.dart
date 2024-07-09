@@ -26,18 +26,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      builder: (context, child) {
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
         return MaterialApp(
-          title: 'Expense App dfsdfh kdh',
+          title: 'Expense App',
           debugShowCheckedModeBanner: false,
 
-          /// value ko listen karna hain es liye wathch kar rahe hai
+         /*  /// value ko listen karna hain es liye wathch kar rahe hai
           themeMode: context.watch<ThemeProvider>().themeValue
               ? ThemeMode.dark
-              : ThemeMode.light,
-          theme: ThemeData.light(),
-          darkTheme: ThemeData.dark(),
+              : ThemeMode.light, */
+          theme: themeProvider.themeValue? ThemeData.dark(): ThemeData.light(),
+      //    darkTheme: ThemeData.dark(),
           // theme: ThemeData(
           //     primarySwatch: Colors.grey,
           //     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -45,8 +45,6 @@ class MyApp extends StatelessWidget {
           //  home: Home_Page(),
           home: const SplashScreenView(),
         );
-        // ffffff
-        // f8f9fa
       },
     );
   }

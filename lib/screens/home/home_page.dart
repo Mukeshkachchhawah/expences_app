@@ -8,7 +8,7 @@ import 'package:expense_app/theme_provider/theme_provider.dart';
 import 'package:expense_app/ui_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -37,9 +37,10 @@ class _HomePageState extends State<HomePage> {
         actions: [
           // handle dart theme and light theme
           Switch(
-            value: context.watch<ThemeProvider>().themeValue,
-            onChanged: (value) {
-              context.read<ThemeProvider>().themeValue = value;
+            value: Provider.of<ThemeProvider>(context).themeValue,
+            onChanged: (newValue) {
+              Provider.of<ThemeProvider>(context, listen: false).themeValue =
+                  newValue;
             },
           )
         ],

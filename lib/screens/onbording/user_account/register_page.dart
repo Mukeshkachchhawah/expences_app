@@ -54,7 +54,7 @@ class _RegisterViewState extends State<RegisterView> {
               key: formKey,
               child: Column(
                 children: [
-                  CustomTextFormFilds(
+                  CustomTextFormFills(
                       "Enter Your Email",
 
                       /// voidCallBack validator
@@ -72,7 +72,7 @@ class _RegisterViewState extends State<RegisterView> {
                         formKey.currentState?.validate();
                       }),
                   hSpacer(),
-                  CustomTextFormFilds(
+                  CustomTextFormFills(
                       "Enter Your Password", BorderRadius.circular(10),
                       validator: (value) {
                     if (value == "" || value!.length < 5) {
@@ -81,7 +81,7 @@ class _RegisterViewState extends State<RegisterView> {
                     return null;
                   }),
                   hSpacer(),
-                  CustomTextFormFilds(
+                  CustomTextFormFills(
                       "Confirm Your Password", BorderRadius.circular(10),
                       validator: (value) {
                     if (value == "" || value!.length < 5) {
@@ -94,14 +94,15 @@ class _RegisterViewState extends State<RegisterView> {
               ),
             ),
             hSpacer(),
+            /*   hSpacer(),
             const Text(
               "I Agree to all Teem, Privacy Policy and Fees",
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
-                  color: Colors.white),
+                  color: Colors.black),
             ),
-            hSpacer(),
+            hSpacer(), */
             InkWell(
               onTap: () async {
                 if (formKey.currentState!.validate()) {
@@ -111,10 +112,11 @@ class _RegisterViewState extends State<RegisterView> {
                   ));
 
                   if (check) {
+                    // ignore: use_build_context_synchronously
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => LoginScreenView(),
+                          builder: (context) => const LoginScreenView(),
                         ));
                   } else {
                     // show error
@@ -152,7 +154,7 @@ class _RegisterViewState extends State<RegisterView> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => LoginScreenView(),
+                            builder: (context) => const LoginScreenView(),
                           ));
                     },
                     child: const Text("Log in",
@@ -168,7 +170,7 @@ class _RegisterViewState extends State<RegisterView> {
               children: [
                 Container(
                   height: 1,
-                  width: media.size.width * 0.40,
+                  width: media.size.width * 0.35,
                   color: Colors.black,
                 ),
                 // wSpacher(),
@@ -182,7 +184,7 @@ class _RegisterViewState extends State<RegisterView> {
                 // wSpacher(),
                 Container(
                   height: 1,
-                  width: media.size.width * 0.40,
+                  width: media.size.width * 0.35,
                   color: Colors.black,
                 ),
               ],
@@ -197,79 +199,7 @@ class _RegisterViewState extends State<RegisterView> {
     )));
   }
 
-  ///
-/* 
-  Widget CustomTextFormFild() {
-    return Form(
-      key: formKey,
-      child: Column(
-        children: [
-          TextFormField(
-            decoration: InputDecoration(
-              filled: true,
-              hintText: "Enter Your Email",
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-                //   borderSide: BorderSide(color: AppColors.blackColor),
-              ),
-            ),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return "Please enter email!";
-              } else {
-                if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
-                  return "Please Enter Valid Email";
-                }
-              }
-            },
-            onChanged: (value) {
-              formKey.currentState?.validate();
-            },
-          ),
-          hSpacher(),
-          TextFormField(
-            decoration: InputDecoration(
-              filled: true,
-              //  fillColor: AppColors.greyColor,
-              hintText: "Enter Your Password",
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-                //   borderSide: BorderSide(color: AppColors.blackColor),
-              ),
-            ),
-            validator: (value) {
-              if (value == "" || value!.length < 5) {
-                return "Please enter valid Password(length must be 6 characters)!";
-              }
-              return null;
-            },
-          ),
-          hSpacher(),
-          TextFormField(
-            decoration: InputDecoration(
-              filled: true,
-              //  fillColor: AppColors.greyColor,
-              hintText: "Confirm Your Password",
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-                // borderSide: BorderSide(color: AppColors.blackColor),
-              ),
-            ),
-            validator: (value) {
-              if (value == "" || value!.length < 5) {
-                return "Password should be Same(length must be 6 characters)!";
-              }
-              return null;
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
- */
-
-  Widget CustomTextFormFilds(String text, BorderRadius, {validator, onchaged}) {
+  Widget CustomTextFormFills(String text, BorderRadius, {validator, onchaged}) {
     return TextFormField(
       decoration: InputDecoration(
         filled: true,

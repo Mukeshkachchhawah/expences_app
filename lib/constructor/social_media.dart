@@ -8,7 +8,6 @@ class SocialMediaButton extends StatelessWidget {
   SocialMediaButton({super.key, required this.images, required this.scaleValue, required this.textValue});
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
       height: 50,
       width: 50,

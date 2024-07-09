@@ -30,12 +30,11 @@ class SleetedCard extends State<AddTaskPage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black),
+        //  iconTheme: const IconThemeData(color: Colors.black),
         title: const Text(
           "New Transaction",
-          style: TextStyle(color: Colors.black),
+          // style: TextStyle(color: Colors.black),
         ),
-        backgroundColor: Colors.white,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

@@ -1,7 +1,7 @@
-import 'package:expense_app/screens/home/setting.dart';
+import 'package:expense_app/screens/home/expense_year.dart';
 import 'package:flutter/material.dart';
 
-import '../home/graf.dart';
+import '../home/expense_moth.dart';
 import '../home/home_page.dart';
 
 class BottomBarPages extends StatefulWidget {
@@ -24,7 +24,7 @@ class _BottomBarPagesState extends State<BottomBarPages> {
     const HomePage(),
     const ExpenseMonth(),
     // Graf(),
-    const Setting()
+    const ExpenseYear()
   ];
   @override
   Widget build(BuildContext context) {

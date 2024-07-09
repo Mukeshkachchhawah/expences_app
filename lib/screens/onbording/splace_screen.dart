@@ -36,12 +36,12 @@ class SplashScreenState extends State<SplashScreenView> {
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) => const BottomBarPages()));
         } else {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => LoginScreenView()));
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const RegisterView()));
         }
       } else {
         Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const RegisterView()));
+            MaterialPageRoute(builder: (context) => const LoginScreenView()));
       }
     });
   }
