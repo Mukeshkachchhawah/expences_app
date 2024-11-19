@@ -1,8 +1,9 @@
 import 'package:expense_app/app_widget/chartData.dart';
+import 'package:expense_app/component/button.dart';
 import 'package:expense_app/modal/expense_modal.dart';
 import 'package:expense_app/modal/filtereExpense_modal.dart';
 import 'package:expense_app/screens/home/addTaks/addtakspage.dart';
-import 'package:expense_app/ui_helper.dart';
+import 'package:expense_app/utils/ui_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -77,7 +78,7 @@ class _ExpenseMonthState extends State<ExpenseMonth> {
                                   const Text("\$",
                                       style: TextStyle(
                                           fontSize: 30, color: Colors.black54)),
-                                  wSpacer(width: 2.0),
+                                  wSpace(width: 2.0),
                                   const Text("295.95",
                                       style: TextStyle(
                                           fontSize: 30,
@@ -90,7 +91,7 @@ class _ExpenseMonthState extends State<ExpenseMonth> {
                                     "Total spent this week",
                                     style: TextStyle(fontSize: 15),
                                   ),
-                                  wSpacer(width: 10.0),
+                                  wSpace(width: 10.0),
                                   const CircleAvatar(
                                     backgroundColor:
                                         Color.fromARGB(255, 183, 233, 184),
@@ -101,7 +102,7 @@ class _ExpenseMonthState extends State<ExpenseMonth> {
                                       color: Colors.green,
                                     ),
                                   ),
-                                  wSpacer(width: 5.0),
+                                  wSpace(width: 5.0),
                                   const Text(
                                     "13%",
                                     style: TextStyle(
@@ -124,11 +125,11 @@ class _ExpenseMonthState extends State<ExpenseMonth> {
                                   yValueMapper: (datum, index) => datum.y),
                             ],
                           ),
-                          hSpacer(mHight: 20.0),
+                          hSpace(mHight: 20.0),
                           Row(
                             children: [
                               button("Week"),
-                              wSpacer(width: 10.0),
+                              wSpace(width: 10.0),
                               button("Month")
                             ],
                           ),

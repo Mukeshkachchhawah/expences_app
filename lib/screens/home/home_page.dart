@@ -5,7 +5,7 @@ import 'package:expense_app/modal/filtereExpense_modal.dart';
 import 'package:expense_app/screens/home/addTaks/addtakspage.dart';
 import 'package:expense_app/screens/onbording/user_account/login_page.dart';
 import 'package:expense_app/theme_provider/theme_provider.dart';
-import 'package:expense_app/ui_helper.dart';
+import 'package:expense_app/utils/ui_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -42,7 +42,8 @@ class _HomePageState extends State<HomePage> {
               Provider.of<ThemeProvider>(context, listen: false).themeValue =
                   newValue;
             },
-          )
+          ),
+          wSpace()
         ],
       ),
       drawer: Drawer(
@@ -78,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                 child: Column(
                   children: [
-                    hSpacer(),
+                    hSpace(),
                     SizedBox(
                       height: 150,
                       width: double.infinity,
@@ -98,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                                   const Text("\$",
                                       style: TextStyle(
                                           fontSize: 30, color: Colors.black54)),
-                                  wSpacer(width: 2.0),
+                                  wSpace(width: 2.0),
                                   const Text(
                                     "000",
                                     style: TextStyle(
@@ -118,7 +119,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-                    hSpacer(),
+                    hSpace(),
                     arrFilterExpensceModal.isNotEmpty
                         ? customListView()
                         : const Text("Expanses is empty"),
@@ -162,16 +163,16 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Text(
                     "Date:- ${arrFilterExpensceModal[index].date}",
-                    style: textStyles18(),
+                    style: textStyleFonts18(context),
                   ),
                   Text(
                     "Amount:- ${arrFilterExpensceModal[index].amount}",
-                    style: textStyles16(),
+                    style: textStyleFonts16(context),
                   ),
                 ],
               ),
             ),
-            hSpacer(),
+            hSpace(),
             // Divider(
             //   color: Colors.black,
             //   height: 1,

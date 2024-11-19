@@ -3,7 +3,6 @@ import 'package:expense_app/screens/onbording/splace_screen.dart';
 import 'package:expense_app/theme_provider/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import 'database/db_helper.dart';
@@ -32,12 +31,13 @@ class MyApp extends StatelessWidget {
           title: 'Expense App',
           debugShowCheckedModeBanner: false,
 
-         /*  /// value ko listen karna hain es liye wathch kar rahe hai
+          /*  /// value ko listen karna hain es liye wathch kar rahe hai
           themeMode: context.watch<ThemeProvider>().themeValue
               ? ThemeMode.dark
               : ThemeMode.light, */
-          theme: themeProvider.themeValue? ThemeData.dark(): ThemeData.light(),
-      //    darkTheme: ThemeData.dark(),
+          theme:
+              themeProvider.themeValue ? ThemeData.dark() : ThemeData.light(),
+          //    darkTheme: ThemeData.dark(),
           // theme: ThemeData(
           //     primarySwatch: Colors.grey,
           //     bottomNavigationBarTheme: const BottomNavigationBarThemeData(

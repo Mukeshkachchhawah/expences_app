@@ -1,6 +1,6 @@
 import 'package:expense_app/expense_bloc/expense_bloc.dart';
 import 'package:expense_app/modal/expense_modal.dart';
-import 'package:expense_app/ui_helper.dart';
+import 'package:expense_app/utils/ui_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -50,7 +50,7 @@ class SleetedCard extends State<AddTaskPage> {
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20))),
             ),
-            hSpacer(),
+            hSpace(),
             TextField(
               controller: descController,
 
@@ -136,7 +136,7 @@ class SleetedCard extends State<AddTaskPage> {
                                 AppConstants.category[selectCat]['image'],
                                 width: 30,
                               ),
-                              wSpacer(width: 10.0),
+                              wSpace(width: 10.0),
                               Text(AppConstants.category[selectCat]['name'])
                             ],
                           )

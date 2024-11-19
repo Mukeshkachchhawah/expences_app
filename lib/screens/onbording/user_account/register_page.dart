@@ -1,5 +1,5 @@
 import 'package:expense_app/screens/onbording/user_account/login_page.dart';
-import 'package:expense_app/ui_helper.dart';
+import 'package:expense_app/utils/ui_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -40,14 +40,14 @@ class _RegisterViewState extends State<RegisterView> {
             ),
             Text(
               "Create your account",
-              style: loginTop1(),
+              style: textStyleFonts28(context),
             ),
-            hSpacer(),
+            hSpace(),
             const Text(
               "Let's get Started with your 30 days free trial",
               style: TextStyle(fontSize: 18),
             ),
-            hSpacer(),
+            hSpace(),
 
             /// Enter Email Fomr Fild
             Form(
@@ -71,7 +71,7 @@ class _RegisterViewState extends State<RegisterView> {
                       onchaged: (value) {
                         formKey.currentState?.validate();
                       }),
-                  hSpacer(),
+                  hSpace(),
                   CustomTextFormFills(
                       "Enter Your Password", BorderRadius.circular(10),
                       validator: (value) {
@@ -80,7 +80,7 @@ class _RegisterViewState extends State<RegisterView> {
                     }
                     return null;
                   }),
-                  hSpacer(),
+                  hSpace(),
                   CustomTextFormFills(
                       "Confirm Your Password", BorderRadius.circular(10),
                       validator: (value) {
@@ -89,12 +89,12 @@ class _RegisterViewState extends State<RegisterView> {
                     }
                     return null;
                   }),
-                  hSpacer(),
+                  hSpace(),
                 ],
               ),
             ),
-            hSpacer(),
-            /*   hSpacer(),
+            hSpace(),
+            /*   hSpace(),
             const Text(
               "I Agree to all Teem, Privacy Policy and Fees",
               style: TextStyle(
@@ -102,7 +102,7 @@ class _RegisterViewState extends State<RegisterView> {
                   fontSize: 20,
                   color: Colors.black),
             ),
-            hSpacer(), */
+            hSpace(), */
             InkWell(
               onTap: () async {
                 if (formKey.currentState!.validate()) {
@@ -140,7 +140,7 @@ class _RegisterViewState extends State<RegisterView> {
                 ),
               ),
             ),
-            hSpacer(mHight: 20.0),
+            hSpace(mHight: 20.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -148,7 +148,7 @@ class _RegisterViewState extends State<RegisterView> {
                     style: TextStyle(
                       fontSize: 16,
                     )),
-                wSpacer(),
+                wSpace(),
                 InkWell(
                     onTap: () {
                       Navigator.push(
@@ -160,11 +160,11 @@ class _RegisterViewState extends State<RegisterView> {
                     child: const Text("Log in",
                         style: TextStyle(
                             fontSize: 16,
-                            color: Colors.red,
+                            color: Color.fromARGB(255, 34, 30, 30),
                             fontWeight: FontWeight.bold)))
               ],
             ),
-            hSpacer(),
+            hSpace(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -189,7 +189,7 @@ class _RegisterViewState extends State<RegisterView> {
                 ),
               ],
             ),
-            hSpacer(mHight: 20.0),
+            hSpace(mHight: 20.0),
 
             /// Social Button
             SocialMedia()

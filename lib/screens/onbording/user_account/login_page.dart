@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../constructor/social_media.dart';
 import '../../../database/db_helper.dart';
-import '../../../ui_helper.dart';
+import '../../../utils/ui_helper.dart';
 import '../bottom_bar_page.dart';
 import 'forget_pass.dart';
 import '../splace_screen.dart';
@@ -36,7 +36,7 @@ class _LoginScreenViewState extends State<LoginScreenView> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                hSpacer(mHight: 60.0),
+                hSpace(mHight: 60.0),
                 Form(
                   key: portraitKey,
                   child: SingleChildScrollView(
@@ -49,13 +49,14 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                               height: 200,
                               width: 200),
                         ),
-                        Text("Log in to your account", style: loginTop1()),
-                        hSpacer(),
+                        Text("Log in to your account",
+                            style: textStyleFonts28(context)),
+                        hSpace(),
                         const Text(
                           "Please enter your details to acces your account",
                           style: TextStyle(fontSize: 18),
                         ),
-                        hSpacer(),
+                        hSpace(),
                         SizedBox(
                           width: double.infinity,
                           child: TextFormField(
@@ -75,7 +76,7 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                             },
                           ),
                         ),
-                        hSpacer(),
+                        hSpace(),
                         SizedBox(
                           width: double.infinity,
                           child: TextFormField(
@@ -94,7 +95,7 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                             },
                           ),
                         ),
-                        hSpacer(),
+                        hSpace(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
@@ -119,7 +120,7 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                             ],
                           ),
                         ),
-                        hSpacer(),
+                        wSpace(),
                         InkWell(
                           onTap: () async {
                             if (portraitKey.currentState!.validate()) {
@@ -162,7 +163,7 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                             ),
                           ),
                         ),
-                        hSpacer(),
+                        hSpace(),
                         Center(
                           child: TextButton(
                               onPressed: () {
@@ -175,7 +176,7 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                               },
                               child: const Text("Create New Account")),
                         ),
-                        hSpacer(),
+                        hSpace(),
                         Padding(
                           padding: const EdgeInsets.all(5),
                           child: Row(
@@ -185,12 +186,12 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                                 color: Colors.black,
                                 width: 150,
                               ),
-                              wSpacer(),
+                              wSpace(),
                               const Text(
                                 "Or",
                                 style: TextStyle(fontSize: 15),
                               ),
-                              wSpacer(),
+                              wSpace(),
                               Container(
                                 height: 1,
                                 color: Colors.black,
@@ -199,7 +200,7 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                             ],
                           ),
                         ),
-                        hSpacer(),
+                        hSpace(),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
