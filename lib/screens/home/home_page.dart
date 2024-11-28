@@ -1,9 +1,9 @@
+import 'package:expense_app/component/side_drawer.dart';
 import 'package:expense_app/constants/constants.dart';
 import 'package:expense_app/expense_bloc/expense_bloc.dart';
 import 'package:expense_app/modal/expense_modal.dart';
 import 'package:expense_app/modal/filtereExpense_modal.dart';
 import 'package:expense_app/screens/home/addTaks/addtakspage.dart';
-import 'package:expense_app/screens/onbording/user_account/login_page.dart';
 import 'package:expense_app/theme_provider/theme_provider.dart';
 import 'package:expense_app/utils/ui_helper.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +46,9 @@ class _HomePageState extends State<HomePage> {
           wSpace()
         ],
       ),
-      drawer: Drawer(
+      drawer: const SideDrawerView(),
+      /* 
+      Drawer(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -62,6 +64,8 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+     */
+
       body: BlocBuilder<ExpenseBloc, ExpenseState>(
         builder: (context, state) {
           if (state is ExpenseLoadingState) {

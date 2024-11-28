@@ -105,12 +105,13 @@ class _RegisterViewState extends State<RegisterView> {
             hSpace(), */
             InkWell(
               onTap: () async {
+                print("=========== User Click Button ==============");
                 if (formKey.currentState!.validate()) {
                   var check = await AppDatabase().createUser(UserModel(
                     email: emailController.text,
                     password: passwordController.text,
                   ));
-
+                  print('======= Check == $check');
                   if (check) {
                     // ignore: use_build_context_synchronously
                     Navigator.push(
@@ -120,6 +121,7 @@ class _RegisterViewState extends State<RegisterView> {
                         ));
                   } else {
                     // show error
+                    SnackBar(content: Text("Registion Failled"));
                   }
                 }
               },
